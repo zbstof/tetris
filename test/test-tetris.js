@@ -18,17 +18,17 @@ describe("I-tetramino rotation", function() {
 		    [false, false, false, false], // y: 2
 		    [false, false, false, false]  // y: 3
 		];
-		//assert.equal(newField, field);
+		assert.equal(newField, field);
 		var rotated180Tetramino = tetris.rotateLine(field, rotated90Tetramino);
 		
-		//assert.equal(newField, field);
+		assert.equal(newField, field);
 		var rotated270Tetramino = tetris.rotateLine(field, rotated180Tetramino);
 		
-		//assert.equal(newField, field);
+		assert.equal(newField, field);
 		var rotated360Tetramino = tetris.rotateLine(field, rotated270Tetramino);
 		
 		assert.equal(lineTetramino, rotated360Tetramino);
-		//assert.equal(newField, field);
+		assert.equal(newField, field);
 	})
 	
 	/* it('Первый поворот lineTetramino успешный', function(){
