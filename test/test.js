@@ -37,9 +37,10 @@ describe("pow", function() {
 	  assert.equal(pow(100, 0), 1);
   })
   
+  
+  
   it("при возведении 100 в 2ю степень результат 10000", function(){
 	  assert.equal(pow(100, 2), 10000);
   })
 
 });
-
