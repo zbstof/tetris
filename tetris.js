@@ -8,17 +8,17 @@ module.exports = {
 	rotateLine: function(field, tetramino){
 		
 		function horizontalPosition_I(tetramino){
-				let arrPsition_Y = [];
+				let arrPosition_Y = [];
 				for(let i of tetramino){
-					arrPsition_Y.push(i.y)
+					arrPosition_Y.push(i.y)
 				}
 				
-				let arrPsition_X = [];
+				let arrPosition_X = [];
 				for(let i of tetramino){
-					arrPsition_X.push(i.x)
+					arrPosition_X.push(i.x)
 				}
 				
-				if(arrPsition_Y[0] == arrPsition_Y[1] && arrPsition_Y[2] == arrPsition_Y[3]){
+				if(arrPosition_Y[0] == arrPosition_Y[1] && arrPosition_Y[2] == arrPosition_Y[3]){
 					for(let i of tetramino){
 						let oldPosition_X = i.x
 						i.x = i.y
@@ -27,7 +27,7 @@ module.exports = {
 					return tetramino
 				}
 				
-				if(arrPsition_X[0] == arrPsition_X[1] && arrPsition_X[2] == arrPsition_X[3]){
+				if(arrPosition_X[0] == arrPosition_X[1] && arrPosition_X[2] == arrPosition_X[3]){
 					for(let i of tetramino){
 						let oldPosition_Y = i.y
 						i.y = i.x
@@ -36,10 +36,16 @@ module.exports = {
 					return tetramino
 				}
 				
+
+				
 			}
+			
+		horizontalPosition_I(tetramino)
+		// Тут я определя rotated90Tetramino
+		var rotated90Tetramino = horizontalPosition_I(horizontalPosition_I(tetramino))
 		
 		
-		return horizontalPosition_I(tetramino)
+		return horizontalPosition_I(rotated90Tetramino)
 		
 		/* function horizontalPosition_I(tetramino){
 				for(let i of tetramino){
