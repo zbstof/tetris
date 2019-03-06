@@ -112,7 +112,7 @@ describe("I-tetramino rotation", function() {
 		];
 		var attemptRotation = tetris.rotateLine(field, lineTetramino)
 		assert.deepEqual(lineTetramino, attemptRotation);
-	})	
+	})
 })
 
 /* describe("I-tetramino rotation", function() {
