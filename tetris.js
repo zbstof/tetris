@@ -9,77 +9,51 @@ module.exports = {
 		let turningPoint = [];
 		let arrCoordinates_X  = [];
 		let arrCoordinates_Y  = [];
-		let cloneTetramino = [];
 		let a = -1;
-		
-		tetramino.forEach(function(elem){
-			cloneTetramino.push(Object.assign({},elem));
-			
-		})
 		
 		tetramino.forEach(function(elem){
 			turningPoint.push(Object.assign({},elem));
 		})
 		
-		for(let elem of cloneTetramino){
+		for(let elem of turningPoint){
 			arrCoordinates_X.push(elem.x);
 			arrCoordinates_Y.push(elem.y);
 		}
 		
-		for(let elem of cloneTetramino){
-			elem.x = arrCoordinates_X[1];
-			elem.y = arrCoordinates_Y[0] + a;
-			a++;
+		
+		
+		if((arrCoordinates_Y[0] == arrCoordinates_Y[1]) && (arrCoordinates_Y[2] == arrCoordinates_Y[3]) && (arrCoordinates_Y[1] == arrCoordinates_Y[2])){
+			
+			for(let i of turningPoint){
+				i.x = arrCoordinates_X[1];
+				i.y = arrCoordinates_Y[0] + a;
+				a++;
+			}
+			return allItemsOnTheField(turningPoint)
 		}
 		
-		for(let elem of cloneTetramino){
-			if((elem.x < 0 || elem.y < 0)  || (elem.x > 9) || (elem.y > 3)){
-				return tetramino;
+		if((arrCoordinates_X[0] == arrCoordinates_X[1]) && (arrCoordinates_X[2] == arrCoordinates_X[3]) && (arrCoordinates_X[1] == arrCoordinates_X[2])){
+			let cloneTetramino = [];
+				turningPoint.forEach(function(elem){
+				cloneTetramino.push(Object.assign({},elem));
+			})				
+			for(let i of cloneTetramino){
+				i.y = arrCoordinates_Y[1];
+				i.x = arrCoordinates_X[0] + a;
+				a++;
 			}
-		} 
+			return allItemsOnTheField(cloneTetramino)
+		}
 		
-		let resultTetramino = []
-		
-		cloneTetramino.forEach(function(elem){
-			resultTetramino.push(Object.assign({},elem));
-		})
-		
-		function rotate(elem){
-			let arrCoordinates_X  = [];
-			let arrCoordinates_Y  = [];
+		function allItemsOnTheField(elem){
 			for(let i of elem){
-				arrCoordinates_X.push(i.x);
-				arrCoordinates_Y.push(i.y);
-			}
-			
-			if(arrCoordinates_Y[0] == arrCoordinates_Y[1]&& arrCoordinates_Y[2] == arrCoordinates_Y[3]){
-				let a = -1;
-				for(let i of elem){
-					i.x = arrCoordinates_X[1];
-					i.y = arrCoordinates_Y[0] + a;
-					a++;
+				if((i.x < 0 || i.y < 0)  || (i.x > 3) || (i.y > 3)){
+					return tetramino;
 				}
-				return elem
 			}
-			
-			if(arrCoordinates_X[0] == arrCoordinates_X[1]&& arrCoordinates_X[2] == arrCoordinates_X[3]){
-				let a = -1;
-				for(let i of elem){
-					i.y = arrCoordinates_Y[1];
-					i.x = arrCoordinates_X[0] + a;
-					a++;
-				}
-				return elem
-			}
+			return elem;
 		}
-		
-		let tetramino_180 = []
-		
-		rotate(cloneTetramino).forEach(function(elem){
-			tetramino_180.push(Object.assign({},elem));
-		})
-		
-		return {resultTetramino: resultTetramino, rotate: tetramino_180}
+			
 	},
 	
 }
