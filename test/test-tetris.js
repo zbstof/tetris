@@ -45,7 +45,10 @@ describe("I-tetramino rotation", function() {
 
 	it('После двух поворотов I тетрамино остается на том же месте', function(){
 		var lineTetramino = [{x: 0, y: 1}, {x: 1, y: 1}, {x: 2, y: 1}, {x: 3, y: 1}];
-		var rotated180 = [{x: 0, y: 1}, {x: 1, y: 1}, {x: 2, y: 1}, {x: 3, y: 1}];
+		var rotated90 = tetris.rotateLine(field, lineTetramino)
+		var rotated180 = tetris.rotateLine(field, rotated90);
+		
+		
 		assert.deepEqual(lineTetramino, rotated180);
 	})
 	
@@ -57,12 +60,8 @@ describe("I-tetramino rotation", function() {
 			{x: 1, y: 3}
 		];
 		
-		var rotated180 =  [
-			{x: 1, y: 0}, 
-			{x: 1, y: 1}, 
-			{x: 1, y: 2}, 
-			{x: 1, y: 3}
-		];
+		var rotated90 = tetris.rotateLine(field, lineTetramino)
+		var rotated180 = tetris.rotateLine(field, rotated90);
 		assert.deepEqual(lineTetramino, rotated180);
 	})
 	
