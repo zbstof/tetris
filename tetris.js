@@ -6,11 +6,17 @@ module.exports = {
 	//тетрамино массив из 4 координат [{x: 1, y: 2}, {x: 2, y: 2}, {x: 3, y: 2}, {x: 4, y: 2}]
 	// field это массив двухмерный булин значений, если true в ней есть блок, false блока нет
 	rotateLine: function(field, tetramino){
+		let lengthField_X = field[0].length;
+		let lengthField_Y = field.length;
 		let turningPoint = [];
 		let arrCoordinates_X  = [];
 		let arrCoordinates_Y  = [];
 		let a = -1;
+		let localTetramino = []
 		
+		tetramino.forEach(function(elem){
+			localTetramino.push(Object.assign({},elem));
+		})
 		tetramino.forEach(function(elem){
 			turningPoint.push(Object.assign({},elem));
 		})
@@ -47,8 +53,8 @@ module.exports = {
 		
 		function allItemsOnTheField(elem){
 			for(let i of elem){
-				if((i.x < 0 || i.y < 0)  || (i.x > 3) || (i.y > 3)){
-					return tetramino;
+				if((i.x < 0 || i.y < 0)  || (i.x > lengthField_X) || (i.y > lengthField_Y)){
+					return localTetramino;
 				}
 			}
 			return elem;
