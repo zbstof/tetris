@@ -53,7 +53,7 @@ module.exports = {
 		
 		function allItemsOnTheField(elem){
 			for(let i of elem){
-				if((i.x < 0 || i.y < 0)  || (i.x > lengthField_X) || (i.y > lengthField_Y)){
+				if((i.x < 0 || i.y < 0)  || (i.x >= lengthField_X) || (i.y >= lengthField_Y)){
 					return localTetramino;
 				}
 			}
