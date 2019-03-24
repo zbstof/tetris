@@ -1,13 +1,12 @@
 var assert = require('chai').assert;
 var tetris = require('../tetris')
-describe("I-tetramino rotation", function() {
-	var field = [
-		    //x: 0   x: 1   x: 2   x: 3
-		    [false, false, false, false], // y: 0
-		    [false, false, false, false], // y: 1
-		    [false, false, false, false], // y: 2
-		    [false, false, false, false]  // y: 3
-	];
+describe("I-tetramino rotation 4x4", function() {
+	var field = tetris.buildField(`
+		----
+		----
+		----
+		----
+	`)
 	it('После 4 поворотов на пустом поле тетрамино должно остаться на этом же месте где и было;', function(){
 		var lineTetramino = [{x: 0, y: 1}, {x: 1, y: 1}, {x: 2, y: 1}, {x: 3, y: 1}];
 		var rotated90Tetramino = tetris.rotateLine(field, lineTetramino);
@@ -41,6 +40,19 @@ describe("I-tetramino rotation", function() {
 			{x: 1, y: 3}
 		];
 		assert.deepEqual(rotated90, expected90);
+	})
+	
+	it("Первый поворот lineTetramino не успешный-не пустое поле", function(){
+		var lineTetramino = [{x: 0, y: 1}, {x: 1, y: 1}, {x: 2, y: 1}, {x: 3, y: 1}];
+		let field = tetris.buildField(`
+			----
+			----
+			----
+			-X--
+		`)
+		let actual_90 =  tetris.rotateLine(field, lineTetramino);
+		let expected_90 = [{x: 0, y: 1}, {x: 1, y: 1}, {x: 2, y: 1}, {x: 3, y: 1}];
+		assert.deepEqual(actual_90, expected_90)
 	})
 
 	it('После двух поворотов I тетрамино остается на том же месте', function(){
@@ -118,15 +130,14 @@ describe("I-tetramino rotation", function() {
 	})
 })
 
-    describe("I-tetramino rotation", function() {
-	var field = [
-		    //x: 0   x: 1   x: 2   x: 3   x: 4
-		    [false, false, false, false, false], // y: 0
-		    [false, false, false, false, false], // y: 1
-		    [false, false, false, false, false], // y: 2
-		    [false, false, false, false, false], // y: 3
-		    [false, false, false, false, false]  // y: 4
-	];
+describe("I-tetramino rotation 5x5", function() {
+	var field = tetris.buildField(`
+		-----
+		-----
+		-----
+		-----
+		-----
+	`)
 	it('После 4 поворотов на пустом поле тетрамино должно остаться на этом же месте где и было;', function(){
 		var lineTetramino = [{x: 1, y: 2}, {x: 2, y: 2}, {x: 3, y: 2}, {x: 4, y: 2}];
 		var rotated90Tetramino = tetris.rotateLine(field, lineTetramino);
@@ -184,8 +195,7 @@ describe("I-tetramino rotation", function() {
 		var attemptRotation = tetris.rotateLine(field, lineTetramino)
 		assert.deepEqual(lineTetramino, attemptRotation);
 	})
-	
-	
+		
 	it('Вертикальное I тетрамино слишком право для поворота x=3', function(){
 		var lineTetramino = [
 			{x: 3, y: 1}, 
@@ -218,4 +228,83 @@ describe("I-tetramino rotation", function() {
 		var attemptRotation = tetris.rotateLine(field, lineTetramino)
 		assert.deepEqual(lineTetramino, attemptRotation);
 	}) 
+})
+describe("field generation works correctly", function(){
+	it("field witch has elements",function(){
+		let stringField = `
+			-----
+			-X-X-
+			-XXX-
+			XXX-X
+		`
+		let actual = tetris.buildField(stringField)
+		let expected = [
+			[false,false,false,false,false],
+			[false,true, false,true, false],
+			[false,true, true ,true, false],
+			[true, true, true, false,true ]
+		
+		]
+		assert.deepEqual(actual,expected)
+	})
+	
+	it("empty field 4x1", function(){
+		let stringField = `
+			-
+			-
+			-
+			-
+		`
+		let actual = tetris.buildField(stringField);
+		let expected = [
+			[false],
+			[false],
+			[false],
+			[false]
+		];
+		
+		assert.deepEqual(actual, expected)
+	})
+	
+	it("horizontal field 2x5", function(){
+		let stringField = `
+			--XXX
+			XXX--
+		`
+		let expected = [
+			[false,false,true, true ,true ],
+			[true, true ,true ,false,false]
+		]
+		let actual = tetris.buildField(stringField);
+		assert.deepEqual(actual, expected);
+	})
+	it("invalid symbol is an error", function(){
+		let stringField = `
+			-X
+			Y-
+		`
+		assert.throws(function(){
+			tetris.buildField(stringField)
+		})
+	})
+	it("field empty is an error", function(){
+		assert.throws(function(){
+			tetris.buildField("")
+		})
+	})
+	
+	it("field whitespace is an error", function(){
+		assert.throws(function(){
+			tetris.buildField("  ")
+		})
+	})
+	
+	it("field only newlines is an error", function(){
+		assert.throws(function(){
+			tetris.buildField(`
+			     
+			`)
+		})
+	})
+	
 })

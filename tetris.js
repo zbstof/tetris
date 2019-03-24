@@ -1,8 +1,4 @@
 module.exports = {
-	
-	test: function(x,y){
-		return x*y;
-	},
 	//тетрамино массив из 4 координат [{x: 1, y: 2}, {x: 2, y: 2}, {x: 3, y: 2}, {x: 4, y: 2}]
 	// field это массив двухмерный булин значений, если true в ней есть блок, false блока нет
 	rotateLine: function(field, tetramino){
@@ -61,5 +57,44 @@ module.exports = {
 		}
 			
 	},
+	/*
+		-----
+		-X-X-
+		-XXX-
+		XXX-X
+
+		transform into
+		[
+			[false,false,false,false,false],
+			[false,true, false,true, false],
+			[false,true, true ,true, false],
+			[true, true, true, false,true ]
+		
+		]
+		
+	*/
+	buildField: function(stringField){
+		if(stringField == ""){
+			throw new Error("empty field")
+		}
+		let arr = stringField.split("\n")
+		let size_Y = arr.length
+		let size_X = arr[0].length
+		let newArr = []
+		
+		for(let i = 1; i < arr.length-1; i++){
+				let elementsForNewArray = []
+			for(let j = 4; j < arr[1].length; j++){
+				if(arr[i][j] == "-"){
+					elementsForNewArray.push(false)
+				}else if(arr[i][j] == "X"){
+					elementsForNewArray.push(true)
+				}
+			}
+			newArr.push(elementsForNewArray)
+		}
+		return newArr;
+	},
+	
 	
 }
