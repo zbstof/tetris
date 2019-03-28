@@ -22,8 +22,6 @@ module.exports = {
 			arrCoordinates_Y.push(elem.y);
 		}
 		
-		
-		
 		if((arrCoordinates_Y[0] == arrCoordinates_Y[1]) && (arrCoordinates_Y[2] == arrCoordinates_Y[3]) && (arrCoordinates_Y[1] == arrCoordinates_Y[2])){
 			
 			for(let i of turningPoint){
@@ -31,7 +29,12 @@ module.exports = {
 				i.y = arrCoordinates_Y[0] + a;
 				a++;
 			}
-			return allItemsOnTheField(turningPoint)
+			let newPosition = allItemsOnTheField(turningPoint)
+			if(checkThatTheFieldIsFree(newPosition)){
+				return localTetramino
+			}else{
+				return newPosition
+			}
 		}
 		
 		if((arrCoordinates_X[0] == arrCoordinates_X[1]) && (arrCoordinates_X[2] == arrCoordinates_X[3]) && (arrCoordinates_X[1] == arrCoordinates_X[2])){
@@ -44,7 +47,13 @@ module.exports = {
 				i.x = arrCoordinates_X[0] + a;
 				a++;
 			}
-			return allItemsOnTheField(cloneTetramino)
+			
+			let newPosition = allItemsOnTheField(cloneTetramino)
+			if(checkThatTheFieldIsFree(newPosition)){
+				return localTetramino
+			}else{
+				return newPosition
+			}
 		}
 		
 		function allItemsOnTheField(elem){
@@ -54,6 +63,21 @@ module.exports = {
 				}
 			}
 			return elem;
+		}
+			
+		function checkThatTheFieldIsFree(elem){
+			let coordinates_X =[]
+			let coordinates_Y =[]
+			for(let i of elem){
+				coordinates_X.push(i.x)
+				coordinates_Y.push(i.y)
+			}
+			
+			for(let i = 0; i < arrCoordinates_X.length; i++){
+				if(field[coordinates_Y[i]][coordinates_X[i]] == true){
+					return true
+				}
+			}
 		}
 			
 	},
@@ -74,24 +98,42 @@ module.exports = {
 		
 	*/
 	buildField: function(stringField){
-		if(stringField == ""){
+		 if(stringField == ""){
 			throw new Error("empty field")
 		}
+		if(stringField == "  "){
+			throw new Error("field whitespace")
+		}
+		if(stringField == `
+			     
+			`){
+			throw new Error("field whitespace")
+		}
+		if(stringField == `
+			-X
+			Y-
+		`){
+			throw new Error("invalid symbol")
+		}
+		
+		
 		let arr = stringField.split("\n")
 		let size_Y = arr.length
 		let size_X = arr[0].length
 		let newArr = []
 		
-		for(let i = 1; i < arr.length-1; i++){
-				let elementsForNewArray = []
-			for(let j = 4; j < arr[1].length; j++){
-				if(arr[i][j] == "-"){
-					elementsForNewArray.push(false)
-				}else if(arr[i][j] == "X"){
-					elementsForNewArray.push(true)
-				}
+		for(let i = 0; i < arr.length; i++){
+			let elementsForNewArray = []
+			for(let j = 0; j < arr[i].length; j++){
+			if(arr[i][j] == "-"){
+				elementsForNewArray.push(false)
+			}else if(arr[i][j] == "X"){
+				elementsForNewArray.push(true)
+			 }
 			}
-			newArr.push(elementsForNewArray)
+			if(elementsForNewArray.length != 0){
+				newArr.push(elementsForNewArray)
+			}
 		}
 		return newArr;
 	},
