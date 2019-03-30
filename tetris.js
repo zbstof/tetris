@@ -134,6 +134,9 @@ module.exports = {
 				newArr.push(elementsForNewArray)
 			}
 		}
+		if(newArr.length == 0){
+			throw new Error("field whitespace")		
+		}
 		return newArr;
 	},
 	

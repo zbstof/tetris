@@ -321,4 +321,44 @@ describe("field generation works correctly", function(){
 		})
 	})
 	
+	it("field has 5 empty lines is an error", function(){
+		assert.throws(function(){
+			tetris.buildField(`
+			
+			
+			
+			
+			
+			`)
+		})
+	})
+	
+	it("invalid two symbols is an error", function(){
+		let stringField = `
+			-X
+			YY
+		`
+		assert.throws(function(){
+			tetris.buildField(stringField)
+		})
+	})
+	
+	it("invalid symbol between symbols is an error", function(){
+		let stringField = `
+			-X-
+			XYX
+		`
+		assert.throw(function(){
+			tetris.buildField(stringField)
+		})
+	})
+	
+	it("five spaces is an error", function(){
+		let stringField = "     "
+		
+		assert.throw(function(){
+			tetris.buildField(stringField)
+		})
+	})
+	
 })
