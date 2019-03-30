@@ -98,17 +98,6 @@ module.exports = {
 		
 	*/
 	buildField: function(stringField){
-		 if(stringField == ""){
-			throw new Error("empty field")
-		}
-		if(stringField == "  "){
-			throw new Error("field whitespace")
-		}
-		if(stringField == `
-			     
-			`){
-			throw new Error("field whitespace")
-		}
 		
 		let arr = stringField.split("\n")
 		for(let k = 0; k < arr.length; k++){
