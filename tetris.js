@@ -109,15 +109,25 @@ module.exports = {
 			`){
 			throw new Error("field whitespace")
 		}
-		if(stringField == `
+		
+		let arr = stringField.split("\n")
+		for(let k = 0; k < arr.length; k++){
+			for(let z = 0; z < arr[k].length; z++){
+				if( arr[k][z] != "-" && arr[k][z] != "X" && arr[k][z] != false) {
+					throw new Error("invalid symbol")
+				}
+			}
+		}
+		
+		/* if(stringField == `
 			-X
 			Y-
 		`){
 			throw new Error("invalid symbol")
-		}
+		} */
 		
 		
-		let arr = stringField.split("\n")
+		
 		let size_Y = arr.length
 		let size_X = arr[0].length
 		let newArr = []
