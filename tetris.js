@@ -119,17 +119,6 @@ module.exports = {
 			}
 		}
 		
-		/* if(stringField == `
-			-X
-			Y-
-		`){
-			throw new Error("invalid symbol")
-		} */
-		
-		
-		
-		let size_Y = arr.length
-		let size_X = arr[0].length
 		let newArr = []
 		
 		for(let i = 0; i < arr.length; i++){
