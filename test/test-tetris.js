@@ -362,3 +362,217 @@ describe("field generation works correctly", function(){
 	})
 	
 })
+
+describe("generation tetramino, the size tetramino 4x4", function(){
+	it("options vertical tetramino x:2 and y:0-3", function(){
+		let stringField = `
+			--X-
+			--X-
+			--X-
+			--X-
+		`
+		let transformation = tetris.buildTetramino(stringField)
+		let bodyTetramino =  [
+		   {x: 2, y: 0}, 
+		   {x: 2, y: 1}, 
+		   {x: 2, y: 2}, 
+		   {x: 2, y: 3}
+		];
+		assert.deepEqual(transformation, bodyTetramino);
+	})
+	
+	it("options horizontal tetramino x:0-3 and y:1", function(){
+		let stringField = `
+			----
+			XXXX
+			----
+			----
+		`
+		let transformation = tetris.buildTetramino(stringField)
+		let bodyTetramino = [
+			{x: 0, y: 1},
+			{x: 1, y: 1},
+			{x: 2, y: 1},
+			{x: 3, y: 1}
+		];
+		assert.deepEqual(transformation, bodyTetramino);
+	})
+	
+	it("options vertical tetramino x:3 and y:0-3", function(){
+		let stringField = `
+			---X
+			---X
+			---X
+			---X
+		`
+		let transformation = tetris.buildTetramino(stringField)
+		let bodyTetramino =  [
+		   {x: 3, y: 0}, 
+		   {x: 3, y: 1}, 
+		   {x: 3, y: 2}, 
+		   {x: 3, y: 3}
+		];
+		assert.deepEqual(transformation, bodyTetramino);
+	})
+	
+	it("options horizontal tetramino x:0-3 and y:0", function(){
+		let stringField = `
+			XXXX
+			----
+			----
+			----
+		`
+		let transformation = tetris.buildTetramino(stringField)
+		let bodyTetramino = [
+			{x: 0, y: 0},
+			{x: 1, y: 0},
+			{x: 2, y: 0},
+			{x: 3, y: 0}
+		];
+		assert.deepEqual(transformation, bodyTetramino);
+	})
+	
+})
+
+describe("generation tetramino, the size tetramino 5x5", function(){
+	it("options vertical tetramino x:2 and y:0-4", function(){
+		let stringField = `
+			--X-
+			--X-
+			--X-
+			--X-
+			--X-
+		`
+		let transformation = tetris.buildTetramino(stringField)
+		let bodyTetramino =  [
+		   {x: 2, y: 0}, 
+		   {x: 2, y: 1}, 
+		   {x: 2, y: 2}, 
+		   {x: 2, y: 3},
+		   {x: 2, y: 4}
+		];
+		assert.deepEqual(transformation, bodyTetramino);
+	})
+	
+	it("options horizontal tetramino x:0-4 and y:1", function(){
+		let stringField = `
+			-----
+			XXXXX
+			-----
+			-----
+		`
+		let transformation = tetris.buildTetramino(stringField)
+		let bodyTetramino = [
+			{x: 0, y: 1},
+			{x: 1, y: 1},
+			{x: 2, y: 1},
+			{x: 3, y: 1},
+			{x: 4, y: 1}
+		];
+		assert.deepEqual(transformation, bodyTetramino);
+	})
+	
+	it("options vertical tetramino x:3 and y:0-4", function(){
+		let stringField = `
+			---X
+			---X
+			---X
+			---X
+			---X
+		`
+		let transformation = tetris.buildTetramino(stringField)
+		let bodyTetramino =  [
+		   {x: 3, y: 0}, 
+		   {x: 3, y: 1}, 
+		   {x: 3, y: 2}, 
+		   {x: 3, y: 3},
+		   {x: 3, y: 4}
+		];
+		assert.deepEqual(transformation, bodyTetramino);
+	})
+	
+	it("options horizontal tetramino x:0-4 and y:0", function(){
+		let stringField = `
+			XXXXX
+			-----
+			-----
+			-----
+		`
+		let transformation = tetris.buildTetramino(stringField)
+		let bodyTetramino = [
+			{x: 0, y: 0},
+			{x: 1, y: 0},
+			{x: 2, y: 0},
+			{x: 3, y: 0},
+			{x: 4, y: 0}
+		];
+		assert.deepEqual(transformation, bodyTetramino);
+	})
+	
+})
+
+describe("generation tetramino, the size tetramino 3x3", function(){
+	it("options vertical tetramino x:2 and y:0-2", function(){
+		let stringField = `
+			--X
+			--X
+			--X
+
+		`
+		let transformation = tetris.buildTetramino(stringField)
+		let bodyTetramino =  [
+		   {x: 2, y: 0}, 
+		   {x: 2, y: 1}, 
+		   {x: 2, y: 2}
+		   
+		];
+		assert.deepEqual(transformation, bodyTetramino);
+	})
+	
+	it("options horizontal tetramino x:0-2 and y:1", function(){
+		let stringField = `
+			---
+			XXX
+			---
+		`
+		let transformation = tetris.buildTetramino(stringField)
+		let bodyTetramino = [
+			{x: 0, y: 1},
+			{x: 1, y: 1},
+			{x: 2, y: 1}
+		];
+		assert.deepEqual(transformation, bodyTetramino);
+	})
+	
+	it("options vertical tetramino x:3 and y:0-2", function(){
+		let stringField = `
+			---X
+			---X
+			---X
+		`
+		let transformation = tetris.buildTetramino(stringField)
+		let bodyTetramino =  [
+		   {x: 3, y: 0}, 
+		   {x: 3, y: 1}, 
+		   {x: 3, y: 2}
+		];
+		assert.deepEqual(transformation, bodyTetramino);
+	})
+	
+	it("options horizontal tetramino x:0-2 and y:0", function(){
+		let stringField = `
+			XXX
+			---
+			---
+			---
+		`
+		let transformation = tetris.buildTetramino(stringField)
+		let bodyTetramino = [
+			{x: 0, y: 0},
+			{x: 1, y: 0},
+			{x: 2, y: 0}
+		];
+		assert.deepEqual(transformation, bodyTetramino);
+	})
+	
+})
