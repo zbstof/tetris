@@ -102,7 +102,6 @@ describe("I-tetramino rotation 4x4", function() {
 			----
 			----
 		`);
-		//[{x: 0, y: 0}, {x: 1, y: 0}, {x: 2, y: 0}, {x: 3, y: 0}];
 		var attemptRotation = tetris.rotateLine(field, lineTetramino)
 		assert.deepEqual(lineTetramino, attemptRotation);
 	})
@@ -114,7 +113,6 @@ describe("I-tetramino rotation 4x4", function() {
 			XXXX
 			----
 		`);
-		//[{x: 0, y: 2}, {x: 1, y: 2}, {x: 2, y: 2}, {x: 3, y: 2}];
 		var attemptRotation = tetris.rotateLine(field, lineTetramino)
 		assert.deepEqual(lineTetramino, attemptRotation);
 	})
@@ -126,11 +124,9 @@ describe("I-tetramino rotation 4x4", function() {
 			----
 			XXXX
 		`);
-		//[{x: 0, y: 3}, {x: 1, y: 3}, {x: 2, y: 3}, {x: 3, y: 3}];
 		var attemptRotation = tetris.rotateLine(field, lineTetramino)
 		assert.deepEqual(lineTetramino, attemptRotation);
 	})
-	
 	
 	it('Вертикальное I тетрамино слишком право для поворота x=2', function(){
 		var lineTetramino = tetris.buildTetramino(`
@@ -139,7 +135,7 @@ describe("I-tetramino rotation 4x4", function() {
 			--X-
 			--X-
 		`);
-		//[{x: 2, y: 0},{x: 2, y: 1},{x: 2, y: 2},{x: 2, y: 3}]; 
+		
 		var attemptRotation = tetris.rotateLine(field, lineTetramino)
 		assert.deepEqual(lineTetramino, attemptRotation);
 	})
@@ -151,7 +147,7 @@ describe("I-tetramino rotation 4x4", function() {
 			---X
 			---X
 		`);
-		//[{x: 3, y: 0},{x: 3, y: 1},{x: 3, y: 2},{x: 3, y: 3}]; 
+		
 		var attemptRotation = tetris.rotateLine(field, lineTetramino)
 		assert.deepEqual(lineTetramino, attemptRotation);
 	})
@@ -163,7 +159,7 @@ describe("I-tetramino rotation 4x4", function() {
 			X---
 			X---
 		`)
-		//[{x: 0, y: 0},{x: 0, y: 1},{x: 0, y: 2},{x: 0, y: 3}];
+		
 		var attemptRotation = tetris.rotateLine(field, lineTetramino)
 		assert.deepEqual(lineTetramino, attemptRotation);
 	})
@@ -185,7 +181,7 @@ describe("I-tetramino rotation 5x5", function() {
 			----
 			----
 		`);
-		//[{x: 1, y: 2}, {x: 2, y: 2}, {x: 3, y: 2}, {x: 4, y: 2}];
+		
 		var rotated90Tetramino = tetris.rotateLine(field, lineTetramino);
 		var rotated180Tetramino = tetris.rotateLine(field, rotated90Tetramino);
 		var rotated270Tetramino = tetris.rotateLine(field, rotated180Tetramino);
@@ -196,12 +192,12 @@ describe("I-tetramino rotation 5x5", function() {
 	it('Первый поворот lineTetramino успешный', function(){
 		var lineTetramino = tetris.buildTetramino(`
 			----
-			--X-
-			--X-
-			--X-
-			--X-
+			-X--
+			-X--
+			-X--
+			-X--
 		`);
-		//[{x: 1, y: 2}, {x: 2, y: 2}, {x: 3, y: 2}, {x: 4, y: 2}];
+		
 		var rotated90     = tetris.rotateLine(field, lineTetramino);
 		var expected90    = tetris.buildTetramino(`
 			-----
@@ -210,7 +206,7 @@ describe("I-tetramino rotation 5x5", function() {
 			--X--
 			--X--
 		`); 
-		//[{x: 2, y: 1},{x: 2, y: 2},{x: 2, y: 3},{x: 2, y: 4}];
+		
 		assert.deepEqual(rotated90, expected90);
 	})
 	
@@ -222,7 +218,7 @@ describe("I-tetramino rotation 5x5", function() {
 			-----
 			-----
 		`);
-		//[{x: 0, y: 1}, {x: 1, y: 1}, {x: 2, y: 1}, {x: 3, y: 1}];
+		
 		var rotated90 = tetris.rotateLine(field, lineTetramino);
 		var rotated180 = tetris.rotateLine(field, rotated90);
 		assert.deepEqual(lineTetramino, rotated180);
@@ -236,7 +232,7 @@ describe("I-tetramino rotation 5x5", function() {
 			-----
 			-----
 		`);
-		//[{x: 1, y: 2}, {x: 2, y: 2}, {x: 3, y: 2}, {x: 4, y: 2}];
+		
 		let field = tetris.buildField(`
 			-----
 			-----
@@ -252,7 +248,7 @@ describe("I-tetramino rotation 5x5", function() {
 			-----
 			-----
 		`);
-		//[{x: 1, y: 2}, {x: 2, y: 2}, {x: 3, y: 2}, {x: 4, y: 2}];
+		
 		assert.deepEqual(actual_90, expected_90)
 	})
 	
@@ -264,7 +260,7 @@ describe("I-tetramino rotation 5x5", function() {
 			--X--
 			--X--
 		`); 
-		//[{x: 2, y: 1},{x: 2, y: 2},{x: 2, y: 3},{x: 2, y: 4}];
+		
 		var rotated90 = tetris.rotateLine(field, lineTetramino);
 		var rotated180 = tetris.rotateLine(field, rotated90);
 		assert.deepEqual(lineTetramino, rotated180);
@@ -278,7 +274,7 @@ describe("I-tetramino rotation 5x5", function() {
 			-----
 			-----
 		`);
-		//[{x: 1, y: 0}, {x: 2, y: 0}, {x: 3, y: 0}, {x: 4, y: 0}];
+		
 		var attemptRotation = tetris.rotateLine(field, lineTetramino)
 		assert.deepEqual(lineTetramino, attemptRotation);
 	})
@@ -291,7 +287,7 @@ describe("I-tetramino rotation 5x5", function() {
 			-XXXX
 			-----
 		`);
-		//[{x: 1, y: 3}, {x: 2, y: 3}, {x: 3, y: 3}, {x: 4, y: 3}];
+		
 		var attemptRotation = tetris.rotateLine(field, lineTetramino)
 		assert.deepEqual(lineTetramino, attemptRotation);
 	})
@@ -304,7 +300,7 @@ describe("I-tetramino rotation 5x5", function() {
 			-----
 			-XXXX
 		`);
-		//[{x: 1, y: 4}, {x: 2, y: 4}, {x: 3, y: 4}, {x: 4, y: 4}];
+		
 		var attemptRotation = tetris.rotateLine(field, lineTetramino)
 		assert.deepEqual(lineTetramino, attemptRotation);
 	})
@@ -317,7 +313,7 @@ describe("I-tetramino rotation 5x5", function() {
 			---X-
 			---X-
 		`);
-		//[{x: 3, y: 1},{x: 3, y: 2},{x: 3, y: 3},{x: 3, y: 4}]; 
+		
 		var attemptRotation = tetris.rotateLine(field, lineTetramino)
 		assert.deepEqual(lineTetramino, attemptRotation);
 	})
@@ -330,7 +326,7 @@ describe("I-tetramino rotation 5x5", function() {
 			----X
 			----X
 		`);
-		//[{x: 4, y: 1},{x: 4, y: 2},{x: 4, y: 3},{x: 4, y: 4}]; 
+		
 		var attemptRotation = tetris.rotateLine(field, lineTetramino)
 		assert.deepEqual(lineTetramino, attemptRotation);
 	})
@@ -343,7 +339,7 @@ describe("I-tetramino rotation 5x5", function() {
 			X----
 			X----
 		`);
-		//[{x: 0, y: 1},{x: 0, y: 2},{x: 0, y: 3},{x: 0, y: 4}];
+		
 		var attemptRotation = tetris.rotateLine(field, lineTetramino)
 		assert.deepEqual(lineTetramino, attemptRotation);
 	}) 
