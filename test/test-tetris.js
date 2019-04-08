@@ -175,11 +175,11 @@ describe("I-tetramino rotation 5x5", function() {
 	`)
 	it('После 4 поворотов на пустом поле тетрамино должно остаться на этом же месте где и было;', function(){
 		var lineTetramino = tetris.buildTetramino(`
-			----
-			----
-			XXXX
-			----
-			----
+			-----
+			-----
+			-XXXX
+			-----
+			-----
 		`);
 		
 		var rotated90Tetramino = tetris.rotateLine(field, lineTetramino);
@@ -191,11 +191,10 @@ describe("I-tetramino rotation 5x5", function() {
 	
 	it('Первый поворот lineTetramino успешный', function(){
 		var lineTetramino = tetris.buildTetramino(`
-			----
-			-X--
-			-X--
-			-X--
-			-X--
+			-----
+			-----
+			-XXXX
+			-----
 		`);
 		
 		var rotated90     = tetris.rotateLine(field, lineTetramino);
