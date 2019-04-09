@@ -131,28 +131,28 @@ module.exports = {
 	
 	buildTetramino: function(coordinats){
 		let math = coordinats.split("\n")
-		let arrCoordinats = [];
+		let arrCoordinats = []
 		
 		for(let i = 0, elem_Y = 0; i < math.length; i++){
 			if(math[i]!= false){
 				
 				for(let j = 0, elem_X = 0; j < math[i].length; j++){
-					let obj = {};
+					let obj = {}
 					if(math[i][j]!= false){
 						if(math[i][j] == "X"){
 							console.log(math[i][j])
-							obj.x = elem_X;
-							obj.y = elem_Y;
+							obj.x = elem_X
+							obj.y = elem_Y
 							
 							
-							arrCoordinats.push(obj);
+							arrCoordinats.push(obj)
 							
 						}
-						elem_X++;
+						elem_X++
 					}
 					
 				}
-				elem_Y++;
+				elem_Y++
 			}
 			
 		}
