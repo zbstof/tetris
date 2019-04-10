@@ -195,6 +195,7 @@ describe("I-tetramino rotation 5x5", function() {
 			-----
 			-XXXX
 			-----
+			-----
 		`);
 		
 		var rotated90     = tetris.rotateLine(field, lineTetramino);
@@ -547,7 +548,20 @@ describe("generation tetramino, the size tetramino 5x5", function(){
 		})
 	})
 	
-	it("options vertical tetramino x:2 and y:0-4", function(){
+	it("invalid length tetramino is an error", function(){
+		let stringField = `
+			--X-
+			--X-
+			--X-
+			--X-
+			--X-
+		`
+		assert.throws(function(){
+			tetris.buildTetramino(stringField)
+		})
+	})
+	
+	/* it("options vertical tetramino x:2 and y:0-4", function(){
 		let stringField = `
 			--X-
 			--X-
@@ -620,11 +634,11 @@ describe("generation tetramino, the size tetramino 5x5", function(){
 		];
 		assert.deepEqual(transformation, bodyTetramino);
 	})
-	
+	 */
 })
 
 describe("generation tetramino, the size tetramino 3x3", function(){
-	it("invalid length tetramino is an error", function(){
+	 it("invalid length tetramino is an error", function(){
 		let stringField = `
 			---
 			-X-
@@ -637,7 +651,7 @@ describe("generation tetramino, the size tetramino 3x3", function(){
 		})
 	})
 	
-	it("options vertical tetramino x:2 and y:0-2", function(){
+	/* it("options vertical tetramino x:2 and y:0-2", function(){
 		let stringField = `
 			--X
 			--X
@@ -698,12 +712,12 @@ describe("generation tetramino, the size tetramino 3x3", function(){
 			{x: 2, y: 0}
 		];
 		assert.deepEqual(transformation, bodyTetramino);
-	})
+	}) */
 	
 })
 
 describe("generation T tetramino", function(){
-	it("turned up T tetramino x:0-1 and y:1-3", function(){
+	it("turned up T tetramino x:1-3 and y:0-1", function(){
 		let stringField = `
 			--X--
 			-XXX-
@@ -711,9 +725,9 @@ describe("generation T tetramino", function(){
 
 		`
 		let transformation = tetris.buildTetramino(stringField)
-		let bodyTetramino =  [
-		   {x: 2, y: 0}, 
-		   {x: 1, y: 1}, 
+		let bodyTetramino =  [ 
+		   {x: 1, y: 1},
+		   {x: 2, y: 0},		   
 		   {x: 2, y: 1},
 		   {x: 3, y: 1}
 		   
@@ -730,9 +744,9 @@ describe("generation T tetramino", function(){
 
 		`
 		let transformation = tetris.buildTetramino(stringField)
-		let bodyTetramino =  [
-		   {x: 2, y: 1}, 
-		   {x: 1, y: 2}, 
+		let bodyTetramino =  [ 
+		   {x: 1, y: 2},
+		   {x: 2, y: 1},
 		   {x: 2, y: 2},
 		   {x: 3, y: 2}
 		   
@@ -749,8 +763,8 @@ describe("generation T tetramino", function(){
 		`
 		let transformation = tetris.buildTetramino(stringField)
 		let bodyTetramino = [
+			{x: 1, y: 2},
 			{x: 2, y: 1}, 
-			{x: 1, y: 2}, 
 			{x: 2, y: 2},
 			{x: 3, y: 2}
 		];
@@ -764,9 +778,9 @@ describe("generation T tetramino", function(){
 			--X--
 		`
 		let transformation = tetris.buildTetramino(stringField)
-		let bodyTetramino =  [
-		   {x: 2, y: 0}, 
-		   {x: 1, y: 1}, 
+		let bodyTetramino =  [ 
+		   {x: 1, y: 1},
+		   {x: 2, y: 0},
 		   {x: 2, y: 1},
 		   {x: 2, y: 2}
 		];
@@ -782,9 +796,9 @@ describe("generation T tetramino", function(){
 			-----
 		`
 		let transformation = tetris.buildTetramino(stringField)
-		let bodyTetramino =  [
-		   {x: 2, y: 1}, 
-		   {x: 1, y: 2}, 
+		let bodyTetramino =  [ 
+		   {x: 1, y: 2},
+		   {x: 2, y: 1},
 		   {x: 2, y: 2},
 		   {x: 2, y: 3}
 		];
@@ -802,8 +816,8 @@ describe("generation T tetramino", function(){
 		let bodyTetramino = [
 			{x: 1, y: 1},
 			{x: 2, y: 1},
-			{x: 3, y: 1},
-			{x: 2, y: 2}
+			{x: 2, y: 2},
+			{x: 3, y: 1}
 		];
 		assert.deepEqual(transformation, bodyTetramino);
 	})
@@ -820,8 +834,8 @@ describe("generation T tetramino", function(){
 		let bodyTetramino = [
 			{x: 1, y: 1},
 			{x: 2, y: 1},
-			{x: 3, y: 1},
-			{x: 2, y: 2}
+			{x: 2, y: 2},
+			{x: 3, y: 1}
 		];
 		assert.deepEqual(transformation, bodyTetramino);
 	})
@@ -837,8 +851,8 @@ describe("generation T tetramino", function(){
 		let bodyTetramino = [
 			{x: 2, y: 0},
 			{x: 2, y: 1},
-			{x: 3, y: 1},
-			{x: 2, y: 2}
+			{x: 2, y: 2},
+			{x: 3, y: 1}
 		];
 		assert.deepEqual(transformation, bodyTetramino);
 	})
@@ -856,8 +870,8 @@ describe("generation T tetramino", function(){
 		let bodyTetramino = [
 			{x: 2, y: 1},
 			{x: 2, y: 2},
-			{x: 3, y: 2},
-			{x: 2, y: 3}
+			{x: 2, y: 3},
+			{x: 3, y: 2}
 		];
 		assert.deepEqual(transformation, bodyTetramino);
 	})

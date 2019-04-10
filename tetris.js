@@ -132,6 +132,7 @@ module.exports = {
 	buildTetramino: function(coordinats){
 		let math = coordinats.split("\n")
 		let arrCoordinats = []
+		let quantityElem = 0;
 		
 		for(let i = 0, elem_Y = 0; i < math.length; i++){
 			if(math[i]!= false){
@@ -143,7 +144,7 @@ module.exports = {
 							console.log(math[i][j])
 							obj.x = elem_X
 							obj.y = elem_Y
-							
+							quantityElem++;
 							
 							arrCoordinats.push(obj)
 							
@@ -156,7 +157,23 @@ module.exports = {
 			}
 			
 		}
-		
+		let condition = true;
+		while (condition) {
+			for(let i = 0, j = 1; j < arrCoordinats.length; i++, j++){
+				if(arrCoordinats[i].x > arrCoordinats[j].x){
+					let b  = arrCoordinats[j];
+					arrCoordinats[j] = arrCoordinats[i];
+					arrCoordinats[i] = b
+				} 
+				
+			}
+			if(arrCoordinats[0].x <= arrCoordinats[1].x && arrCoordinats[1].x <= arrCoordinats[2].x && arrCoordinats[2].x <= arrCoordinats[3].x){
+				condition = false
+			}					
+		}
+		if(quantityElem != 4){
+			throw error;
+		}
 		return arrCoordinats;
 		
 	}
