@@ -129,9 +129,9 @@ module.exports = {
 		return newArr;
 	},
 	
-	buildTetramino: function(coordinats){
-		let math = coordinats.split("\n")
-		let arrCoordinats = []
+	buildTetramino: function(stringOfCoordinates){
+		let math = stringOfCoordinates.split("\n")
+		let arrayOfCoordinates = []
 		let quantityElem = 0;
 		
 		for(let i = 0, elem_Y = 0; i < math.length; i++){
@@ -146,7 +146,7 @@ module.exports = {
 							obj.y = elem_Y
 							quantityElem++;
 							
-							arrCoordinats.push(obj)
+							arrayOfCoordinates.push(obj)
 							
 						}
 						elem_X++
@@ -159,22 +159,22 @@ module.exports = {
 		}
 		let condition = true;
 		while (condition) {
-			for(let i = 0, j = 1; j < arrCoordinats.length; i++, j++){
-				if(arrCoordinats[i].x > arrCoordinats[j].x){
-					let b  = arrCoordinats[j];
-					arrCoordinats[j] = arrCoordinats[i];
-					arrCoordinats[i] = b
+			for(let i = 0, j = 1; j < arrayOfCoordinates.length; i++, j++){
+				if(arrayOfCoordinates[i].x > arrayOfCoordinates[j].x){
+					let b  = arrayOfCoordinates[j];
+					arrayOfCoordinates[j] = arrayOfCoordinates[i];
+					arrayOfCoordinates[i] = b
 				} 
 				
 			}
-			if(arrCoordinats[0].x <= arrCoordinats[1].x && arrCoordinats[1].x <= arrCoordinats[2].x && arrCoordinats[2].x <= arrCoordinats[3].x){
+			if(arrayOfCoordinates[0].x <= arrayOfCoordinates[1].x && arrayOfCoordinates[1].x <= arrayOfCoordinates[2].x && arrayOfCoordinates[2].x <= arrayOfCoordinates[3].x){
 				condition = false
 			}					
 		}
 		if(quantityElem != 4){
-			throw error;
-		}
-		return arrCoordinats;
+			throw new Error("tetramino size is not correct");
+		} 
+		return arrayOfCoordinates;
 		
 	}
 	

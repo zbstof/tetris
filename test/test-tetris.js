@@ -609,7 +609,7 @@ describe("generation T tetramino", function(){
 		assert.deepEqual(transformation, bodyTetramino);
 	})
 	
-	it("turned up T tetramino in the middle of the field x:1-2 and y:1-3", function(){
+	it("turned up T tetramino in the middle of the field x:1-3 and y:1-2", function(){
 		let stringField = `
 			-----
 			--X--
@@ -628,7 +628,7 @@ describe("generation T tetramino", function(){
 		assert.deepEqual(transformation, bodyTetramino);
 	})
 	
-	it("turned up T tetramino x:1-2 and y:1-3", function(){
+	it("turned up T tetramino x:1-3 and y:1-2", function(){
 		let stringField = `
 			-----
 			--X--
@@ -645,7 +645,7 @@ describe("generation T tetramino", function(){
 		assert.deepEqual(transformation, bodyTetramino);
 	})
 	
-	it("turned left T tetramino x:0-2 and y:1-2", function(){
+	it("turned left T tetramino x:1-2 and y:0-2", function(){
 		let stringField = `
 			--X--
 			-XX--
@@ -661,7 +661,7 @@ describe("generation T tetramino", function(){
 		assert.deepEqual(transformation, bodyTetramino);
 	})
 	
-	it("turned left T tetramino in the middle of the field x:1-3 and y:1-2", function(){
+	it("turned left T tetramino in the middle of the field x:1-2 and y:1-3", function(){
 		let stringField = `
 			-----
 			--X--
@@ -679,7 +679,7 @@ describe("generation T tetramino", function(){
 		assert.deepEqual(transformation, bodyTetramino);
 	})
 	
-	it("turned down T tetramino x:1-2 and y:0", function(){
+	it("turned down T tetramino x:1-3 and y:1-2", function(){
 		let stringField = `
 			-----
 			-XXX-
@@ -696,7 +696,7 @@ describe("generation T tetramino", function(){
 		assert.deepEqual(transformation, bodyTetramino);
 	})
 	
-	it("turned down T tetramino in the middle of the field x:1-2 and y:0", function(){
+	it("turned down T tetramino in the middle of the field x:1-3 and y:1-2", function(){
 		let stringField = `
 			-----
 			-XXX-
@@ -714,7 +714,7 @@ describe("generation T tetramino", function(){
 		assert.deepEqual(transformation, bodyTetramino);
 	})
 	
-	it("turned right T tetramino x:0-2 and y:0", function(){
+	it("turned right T tetramino x:2-3 and y:0-2", function(){
 		let stringField = `
 			--X--
 			--XX-
@@ -731,7 +731,7 @@ describe("generation T tetramino", function(){
 		assert.deepEqual(transformation, bodyTetramino);
 	})
 	
-	it("turned right T tetramino in the middle of the field x:1-3 and y:0", function(){
+	it("turned right T tetramino in the middle of the field x:2-3 and y:1-3", function(){
 		let stringField = `
 			-----
 			--X--
