@@ -157,8 +157,8 @@ module.exports = {
 			}
 			
 		}
-		let condition = true;
-		while (condition) {
+		let repeatCycle = true;
+		while (repeatCycle) {
 			for(let i = 0, j = 1; j < arrayOfCoordinates.length; i++, j++){
 				if(arrayOfCoordinates[i].x > arrayOfCoordinates[j].x){
 					let b  = arrayOfCoordinates[j];
@@ -168,7 +168,7 @@ module.exports = {
 				
 			}
 			if(arrayOfCoordinates[0].x <= arrayOfCoordinates[1].x && arrayOfCoordinates[1].x <= arrayOfCoordinates[2].x && arrayOfCoordinates[2].x <= arrayOfCoordinates[3].x){
-				condition = false
+				repeatCycle = false
 			}					
 		}
 		if(quantityElem != 4){
