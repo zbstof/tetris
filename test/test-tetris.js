@@ -1097,20 +1097,6 @@ describe("L-tetromino rotation", function() {
 		----
 	`);
 	
-	it('After 4 turns on an empty emptyField, the L-tetromino should remain in the same place where it was;', function(){
-		let tetromino = tetris.buildTetromino(`
-			----
-			--X-
-			XXX-
-			----
-		`);
-		let rotated90_L_Tetromino = tetris.rotateLine(emptyField, tetromino);
-		let rotated180_L_Tetromino = tetris.rotateLine(emptyField, rotated90_L_Tetromino);
-		let rotated270_L_Tetromino = tetris.rotateLine(emptyField, rotated180_L_Tetromino);
-		let rotated360_L_Tetromino = tetris.rotateLine(emptyField, rotated270_L_Tetromino);
-		asert.deepEqual(tetromino, rotated360_L_Tetromino);
-	})
-	
 	it('The first rotation L-tetromino successful', function(){
 		let tetromino = tetris.buildTetromino(`
 			----
