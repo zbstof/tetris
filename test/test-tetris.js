@@ -1088,3 +1088,139 @@ describe("generation Square Tetramino", function(){
 		assert.deepEqual(transformation, bodyTetramino);	
 	})
 })
+
+describe("L-tetramino rotation 4x4", function() {
+	let field = tetris.buildField(`
+		----
+		----
+		----
+		----
+	`);
+	
+	it('After 4 turns on an empty field, the L-tetramino should remain in the same place where it was;', function(){
+		let L_Tetramino = tetris.buildTetramino(`
+			----
+			--X-
+			XXX-
+			----
+		`);
+		let rotated90_L_Tetramino = tetris.rotateTetramino_L(field, L_Tetramino);
+		let rotated180_L_Tetramino = tetris.rotateTetramino_L(field, rotated90_L_Tetramino);
+		let rotated270_L_Tetramino = tetris.rotateTetramino_L(field, rotated180_L_Tetramino);
+		let rotated360_L_Tetramino = tetris.rotateTetramino_L(field, rotated270_L_Tetramino);
+		asert.deepEqual(L_Tetramino, rotated360_L_Tetramino);
+	})
+	
+	it('The first rotate L-tetramino successful', function(){
+		let L_Tetramino = tetris.buildTetramino(`
+			----
+			--X-
+			XXX-
+			----
+		`);
+		let rotated90_L = tetris.rotateTetramino_L(field, L_Tetramino);
+		let expected90_L = tetris.buildTetramino(`
+			----
+			XX--
+			-X--
+			-X--
+		`);
+		asert.deepEqual(rotated90_L, expected90_L);
+	})
+	
+	it('The second rotate L-tetramino successful', function(){
+		let L_Tetramino = tetris.buildTetramino(`
+			----
+			--X-
+			XXX-
+			----
+		`);
+		let rotated90_L = tetris.rotateTetramino_L(field, L_Tetramino);
+		let rotated180_L = tetris.rotateTetramino_L(field, rotated90_L);
+		let expected180_L = tetris.buildTetramino(`
+			----
+			XXX-
+			X---
+			----
+		`);
+		asert.deepEqual(rotated180_L, expected180_L);
+	})
+	
+	it('The third rotate L-tetramino successful', function(){
+		let L_Tetramino = tetris.buildTetramino(`
+			----
+			--X-
+			XXX-
+			----
+		`);
+		let rotated90_L = tetris.rotateTetramino_L(field, L_Tetramino);
+		let rotated180_L = tetris.rotateTetramino_L(field, rotated90_L);
+		let rotated270_L = tetris.rotateTetramino_L(field, rotated180_L);
+		let expected270_L = tetris.buildTetramino(`
+			----
+			X---
+			X---
+			XX--
+		`);
+		asert.deepEqual(rotated270_L, expected270_L);
+	})
+	
+	it('L-tetramino too low to turn', function(){
+		let L_Tetramino = tetris.buildTetramino(`
+			----
+			----
+			--X-
+			XXX-
+		`);
+		let attemptRotation = tetris.rotateTetramino_L(field, L_Tetramino);
+		asert.deepEqual(L_Tetramino, attemptRotation);
+	})
+	
+	it("L-tetramino can't turn 90 degrees", function(){
+		let L_Tetramino = tetris.buildTetramino(`
+			----
+			--X-
+			XXX-
+			----
+		`);
+		let field = tetris.buildField(`
+			----
+			-X--
+			----
+			----
+		`)
+		let actual90_L = tetris.rotateTetramino_L(field, L_Tetramino);
+		let expected90_L = tetris.buildTetramino(`
+			----
+			--X-
+			XXX-
+			----
+		`);
+		asert.deepEqual(actual90_L, expected90_L);
+	})
+	
+	it("L-tetramino can't turn 180 degrees", function(){
+		let L_Tetramino = tetris.buildTetramino(`
+			----
+			--X-
+			XXX-
+			----
+		`);
+		let field = tetris.buildField(`
+			----
+			----
+			X---
+			----
+		`)
+		let actual90_L = tetris.rotateTetramino_L(field, L_Tetramino);
+		let actual180_L = tetris.rotateTetramino_L(field, actual90_L);
+		let expected180_L = tetris.buildTetramino(`
+			----
+			XX--
+			-X--
+			-X--
+		`);
+		asert.deepEqual(actual180_L, expected180_L);
+	})
+	
+})
