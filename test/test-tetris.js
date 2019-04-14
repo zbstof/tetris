@@ -1,6 +1,6 @@
 var assert = require('chai').assert;
 var tetris = require('../tetris')
-describe("I-tetramino rotation 4x4", function() {
+describe("I-tetromino rotation 4x4", function() {
 	var field = tetris.buildField(`
 		----
 		----
@@ -8,35 +8,35 @@ describe("I-tetramino rotation 4x4", function() {
 		----
 	`)
 	it('После 4 поворотов на пустом поле тетрамино должно остаться на этом же месте где и было;', function(){
-		var lineTetramino = tetris.buildTetramino(`
+		var lineTetromino = tetris.buildTetromino(`
 			----
 			XXXX
 			----
 			----
 		`);
-		var rotated90Tetramino = tetris.rotateLine(field, lineTetramino);
+		var rotated90Tetromino = tetris.rotateLine(field, lineTetromino);
 		
-		var rotated180Tetramino = tetris.rotateLine(field, rotated90Tetramino);
-		
-		
-		var rotated270Tetramino = tetris.rotateLine(field, rotated180Tetramino);
+		var rotated180Tetromino = tetris.rotateLine(field, rotated90Tetromino);
 		
 		
-		var rotated360Tetramino = tetris.rotateLine(field, rotated270Tetramino);
+		var rotated270Tetromino = tetris.rotateLine(field, rotated180Tetromino);
 		
-		assert.deepEqual(lineTetramino, rotated360Tetramino);
+		
+		var rotated360Tetromino = tetris.rotateLine(field, rotated270Tetromino);
+		
+		assert.deepEqual(lineTetromino, rotated360Tetromino);
 		
 	})
 	
-	it('Первый поворот lineTetramino успешный', function(){
-		var lineTetramino = tetris.buildTetramino(`
+	it('Первый поворот lineTetromino успешный', function(){
+		var lineTetromino = tetris.buildTetromino(`
 			----
 			XXXX
 			----
 			----
 		`);
-		var rotated90  = tetris.rotateLine(field, lineTetramino);
-		var expected90 = tetris.buildTetramino(`
+		var rotated90  = tetris.rotateLine(field, lineTetromino);
+		var expected90 = tetris.buildTetromino(`
 			-X--
 			-X--
 			-X--
@@ -45,8 +45,8 @@ describe("I-tetramino rotation 4x4", function() {
 		assert.deepEqual(rotated90, expected90);
 	})
 	
-	it("Первый поворот lineTetramino не успешный-не пустое поле", function(){
-		var lineTetramino = tetris.buildTetramino(`
+	it("Первый поворот lineTetromino не успешный-не пустое поле", function(){
+		var lineTetromino = tetris.buildTetromino(`
 			----
 			XXXX
 			----
@@ -58,8 +58,8 @@ describe("I-tetramino rotation 4x4", function() {
 			----
 			-X--
 		`)
-		let actual_90 =  tetris.rotateLine(field, lineTetramino);
-		let expected_90 = tetris.buildTetramino(`
+		let actual_90 =  tetris.rotateLine(field, lineTetromino);
+		let expected_90 = tetris.buildTetromino(`
 			----
 			XXXX
 			----
@@ -69,103 +69,103 @@ describe("I-tetramino rotation 4x4", function() {
 	})
 
 	it('После двух поворотов I тетрамино остается на том же месте', function(){
-		var lineTetramino = tetris.buildTetramino(`
+		var lineTetromino = tetris.buildTetromino(`
 			----
 			XXXX
 			----
 			----
 		`);
-		var rotated90 = tetris.rotateLine(field, lineTetramino)
+		var rotated90 = tetris.rotateLine(field, lineTetromino)
 		var rotated180 = tetris.rotateLine(field, rotated90);
 		
 		
-		assert.deepEqual(lineTetramino, rotated180);
+		assert.deepEqual(lineTetromino, rotated180);
 	})
 	
 	it('После двух поворотов вертикальное I тетрамино остается на том же месте', function(){
-		var lineTetramino = tetris.buildTetramino(`
+		var lineTetromino = tetris.buildTetromino(`
 			-X--
 			-X--
 			-X--
 			-X--
 		`);
 		
-		var rotated90 = tetris.rotateLine(field, lineTetramino)
+		var rotated90 = tetris.rotateLine(field, lineTetromino)
 		var rotated180 = tetris.rotateLine(field, rotated90);
-		assert.deepEqual(lineTetramino, rotated180);
+		assert.deepEqual(lineTetromino, rotated180);
 	})
 	
 	it('Горизонтальное I тетрамино слишком высоко для поворота', function(){
-		var lineTetramino = tetris.buildTetramino(`
+		var lineTetromino = tetris.buildTetromino(`
 			XXXX
 			----
 			----
 			----
 		`);
-		var attemptRotation = tetris.rotateLine(field, lineTetramino)
-		assert.deepEqual(lineTetramino, attemptRotation);
+		var attemptRotation = tetris.rotateLine(field, lineTetromino)
+		assert.deepEqual(lineTetromino, attemptRotation);
 	})
 	
 	it('Горизонтальное I тетрамино слишком низко для поворота y=2', function(){
-		var lineTetramino = tetris.buildTetramino(`
+		var lineTetromino = tetris.buildTetromino(`
 			----
 			----
 			XXXX
 			----
 		`);
-		var attemptRotation = tetris.rotateLine(field, lineTetramino)
-		assert.deepEqual(lineTetramino, attemptRotation);
+		var attemptRotation = tetris.rotateLine(field, lineTetromino)
+		assert.deepEqual(lineTetromino, attemptRotation);
 	})
 	
 	it('Горизонтальное I тетрамино слишком низко для поворота y=3', function(){
-		var lineTetramino = tetris.buildTetramino(`
+		var lineTetromino = tetris.buildTetromino(`
 			----
 			----
 			----
 			XXXX
 		`);
-		var attemptRotation = tetris.rotateLine(field, lineTetramino)
-		assert.deepEqual(lineTetramino, attemptRotation);
+		var attemptRotation = tetris.rotateLine(field, lineTetromino)
+		assert.deepEqual(lineTetromino, attemptRotation);
 	})
 	
 	it('Вертикальное I тетрамино слишком право для поворота x=2', function(){
-		var lineTetramino = tetris.buildTetramino(`
+		var lineTetromino = tetris.buildTetromino(`
 			--X-
 			--X-
 			--X-
 			--X-
 		`);
 		
-		var attemptRotation = tetris.rotateLine(field, lineTetramino)
-		assert.deepEqual(lineTetramino, attemptRotation);
+		var attemptRotation = tetris.rotateLine(field, lineTetromino)
+		assert.deepEqual(lineTetromino, attemptRotation);
 	})
 	
 	it('Вертикальное I тетрамино слишком право для поворота x=3', function(){
-		var lineTetramino = tetris.buildTetramino(`
+		var lineTetromino = tetris.buildTetromino(`
 			---X
 			---X
 			---X
 			---X
 		`);
 		
-		var attemptRotation = tetris.rotateLine(field, lineTetramino)
-		assert.deepEqual(lineTetramino, attemptRotation);
+		var attemptRotation = tetris.rotateLine(field, lineTetromino)
+		assert.deepEqual(lineTetromino, attemptRotation);
 	})
 	
 	it('Вертикальное I тетрамино слишком лево для поворота', function(){
-		var lineTetramino = tetris.buildTetramino(`
+		var lineTetromino = tetris.buildTetromino(`
 			X---
 			X---
 			X---
 			X---
 		`)
 		
-		var attemptRotation = tetris.rotateLine(field, lineTetramino)
-		assert.deepEqual(lineTetramino, attemptRotation);
+		var attemptRotation = tetris.rotateLine(field, lineTetromino)
+		assert.deepEqual(lineTetromino, attemptRotation);
 	})
 })
 
-describe("I-tetramino rotation 5x5", function() {
+describe("I-tetromino rotation 5x5", function() {
 	var field = tetris.buildField(`
 		-----
 		-----
@@ -174,7 +174,7 @@ describe("I-tetramino rotation 5x5", function() {
 		-----
 	`)
 	it('После 4 поворотов на пустом поле тетрамино должно остаться на этом же месте где и было;', function(){
-		var lineTetramino = tetris.buildTetramino(`
+		var lineTetromino = tetris.buildTetromino(`
 			-----
 			-----
 			-XXXX
@@ -182,15 +182,15 @@ describe("I-tetramino rotation 5x5", function() {
 			-----
 		`);
 		
-		var rotated90Tetramino = tetris.rotateLine(field, lineTetramino);
-		var rotated180Tetramino = tetris.rotateLine(field, rotated90Tetramino);
-		var rotated270Tetramino = tetris.rotateLine(field, rotated180Tetramino);
-		var rotated360Tetramino = tetris.rotateLine(field, rotated270Tetramino);
-		assert.deepEqual(lineTetramino, rotated360Tetramino);
+		var rotated90Tetromino = tetris.rotateLine(field, lineTetromino);
+		var rotated180Tetromino = tetris.rotateLine(field, rotated90Tetromino);
+		var rotated270Tetromino = tetris.rotateLine(field, rotated180Tetromino);
+		var rotated360Tetromino = tetris.rotateLine(field, rotated270Tetromino);
+		assert.deepEqual(lineTetromino, rotated360Tetromino);
 	})
 	
-	it('Первый поворот lineTetramino успешный', function(){
-		var lineTetramino = tetris.buildTetramino(`
+	it('Первый поворот lineTetromino успешный', function(){
+		var lineTetromino = tetris.buildTetromino(`
 			-----
 			-----
 			-XXXX
@@ -198,8 +198,8 @@ describe("I-tetramino rotation 5x5", function() {
 			-----
 		`);
 		
-		var rotated90     = tetris.rotateLine(field, lineTetramino);
-		var expected90    = tetris.buildTetramino(`
+		var rotated90     = tetris.rotateLine(field, lineTetromino);
+		var expected90    = tetris.buildTetromino(`
 			-----
 			--X--
 			--X--
@@ -211,7 +211,7 @@ describe("I-tetramino rotation 5x5", function() {
 	})
 	
 	it('После двух поворотов I тетрамино остается на том же месте', function(){
-		var lineTetramino = tetris.buildTetramino(`
+		var lineTetromino = tetris.buildTetromino(`
 			-----
 			XXXX-
 			-----
@@ -219,13 +219,13 @@ describe("I-tetramino rotation 5x5", function() {
 			-----
 		`);
 		
-		var rotated90 = tetris.rotateLine(field, lineTetramino);
+		var rotated90 = tetris.rotateLine(field, lineTetromino);
 		var rotated180 = tetris.rotateLine(field, rotated90);
-		assert.deepEqual(lineTetramino, rotated180);
+		assert.deepEqual(lineTetromino, rotated180);
 	})
 	
-	it("Первый поворот lineTetramino не успешный-не пустое поле 5x5", function(){
-		var lineTetramino = tetris.buildTetramino(`
+	it("Первый поворот lineTetromino не успешный-не пустое поле 5x5", function(){
+		var lineTetromino = tetris.buildTetromino(`
 			-----
 			-----
 			-XXXX
@@ -240,8 +240,8 @@ describe("I-tetramino rotation 5x5", function() {
 			-----
 			--X--
 		`)
-		let actual_90 =  tetris.rotateLine(field, lineTetramino);
-		let expected_90 = tetris.buildTetramino(`
+		let actual_90 =  tetris.rotateLine(field, lineTetromino);
+		let expected_90 = tetris.buildTetromino(`
 			-----
 			-----
 			-XXXX
@@ -253,7 +253,7 @@ describe("I-tetramino rotation 5x5", function() {
 	})
 	
 	it('После двух поворотов вертикальное I тетрамино остается на том же месте', function(){
-		var lineTetramino = tetris.buildTetramino(`
+		var lineTetromino = tetris.buildTetromino(`
 			-----
 			--X--
 			--X--
@@ -261,13 +261,13 @@ describe("I-tetramino rotation 5x5", function() {
 			--X--
 		`); 
 		
-		var rotated90 = tetris.rotateLine(field, lineTetramino);
+		var rotated90 = tetris.rotateLine(field, lineTetromino);
 		var rotated180 = tetris.rotateLine(field, rotated90);
-		assert.deepEqual(lineTetramino, rotated180);
+		assert.deepEqual(lineTetromino, rotated180);
 	})
 	
 	it('Горизонтальное I тетрамино слишком высоко для поворота', function(){
-		var lineTetramino = tetris.buildTetramino(`
+		var lineTetromino = tetris.buildTetromino(`
 			-XXXX
 			-----
 			-----
@@ -275,12 +275,12 @@ describe("I-tetramino rotation 5x5", function() {
 			-----
 		`);
 		
-		var attemptRotation = tetris.rotateLine(field, lineTetramino)
-		assert.deepEqual(lineTetramino, attemptRotation);
+		var attemptRotation = tetris.rotateLine(field, lineTetromino)
+		assert.deepEqual(lineTetromino, attemptRotation);
 	})
 	
 	it('Горизонтальное I тетрамино слишком низко для поворота y=3', function(){
-		var lineTetramino = tetris.buildTetramino(`
+		var lineTetromino = tetris.buildTetromino(`
 			-----
 			-----
 			-----
@@ -288,12 +288,12 @@ describe("I-tetramino rotation 5x5", function() {
 			-----
 		`);
 		
-		var attemptRotation = tetris.rotateLine(field, lineTetramino)
-		assert.deepEqual(lineTetramino, attemptRotation);
+		var attemptRotation = tetris.rotateLine(field, lineTetromino)
+		assert.deepEqual(lineTetromino, attemptRotation);
 	})
 	
 	it('Горизонтальное I тетрамино слишком низко для поворота y=4', function(){
-		var lineTetramino = tetris.buildTetramino(`
+		var lineTetromino = tetris.buildTetromino(`
 			-----
 			-----
 			-----
@@ -301,12 +301,12 @@ describe("I-tetramino rotation 5x5", function() {
 			-XXXX
 		`);
 		
-		var attemptRotation = tetris.rotateLine(field, lineTetramino)
-		assert.deepEqual(lineTetramino, attemptRotation);
+		var attemptRotation = tetris.rotateLine(field, lineTetromino)
+		assert.deepEqual(lineTetromino, attemptRotation);
 	})
 		
 	it('Вертикальное I тетрамино слишком право для поворота x=3', function(){
-		var lineTetramino = tetris.buildTetramino(`
+		var lineTetromino = tetris.buildTetromino(`
 			-----
 			---X-
 			---X-
@@ -314,12 +314,12 @@ describe("I-tetramino rotation 5x5", function() {
 			---X-
 		`);
 		
-		var attemptRotation = tetris.rotateLine(field, lineTetramino)
-		assert.deepEqual(lineTetramino, attemptRotation);
+		var attemptRotation = tetris.rotateLine(field, lineTetromino)
+		assert.deepEqual(lineTetromino, attemptRotation);
 	})
 	
 	it('Вертикальное I тетрамино слишком право для поворота x=4', function(){
-		var lineTetramino = tetris.buildTetramino(`
+		var lineTetromino = tetris.buildTetromino(`
 			-----
 			----X
 			----X
@@ -327,12 +327,12 @@ describe("I-tetramino rotation 5x5", function() {
 			----X
 		`);
 		
-		var attemptRotation = tetris.rotateLine(field, lineTetramino)
-		assert.deepEqual(lineTetramino, attemptRotation);
+		var attemptRotation = tetris.rotateLine(field, lineTetromino)
+		assert.deepEqual(lineTetromino, attemptRotation);
 	})
 	
 	it('Вертикальное I тетрамино слишком лево для поворота', function(){
-		var lineTetramino = tetris.buildTetramino(`
+		var lineTetromino = tetris.buildTetromino(`
 			-----
 			X----
 			X----
@@ -340,8 +340,8 @@ describe("I-tetramino rotation 5x5", function() {
 			X----
 		`);
 		
-		var attemptRotation = tetris.rotateLine(field, lineTetramino)
-		assert.deepEqual(lineTetramino, attemptRotation);
+		var attemptRotation = tetris.rotateLine(field, lineTetromino)
+		assert.deepEqual(lineTetromino, attemptRotation);
 	}) 
 })
 describe("field generation works correctly", function(){
@@ -464,79 +464,79 @@ describe("field generation works correctly", function(){
 	
 })
 
-describe("generation tetramino, the size tetramino 4x4", function(){
-	it("options vertical tetramino x:2 and y:0-3", function(){
+describe("generation tetromino, the size tetromino 4x4", function(){
+	it("options vertical tetromino x:2 and y:0-3", function(){
 		let stringField = `
 			--X-
 			--X-
 			--X-
 			--X-
 		`
-		let transformation = tetris.buildTetramino(stringField)
-		let bodyTetramino =  [
+		let transformation = tetris.buildTetromino(stringField)
+		let bodyTetromino =  [
 		   {x: 2, y: 0}, 
 		   {x: 2, y: 1}, 
 		   {x: 2, y: 2}, 
 		   {x: 2, y: 3}
 		];
-		assert.deepEqual(transformation, bodyTetramino);
+		assert.deepEqual(transformation, bodyTetromino);
 	})
 	
-	it("options horizontal tetramino x:0-3 and y:1", function(){
+	it("options horizontal tetromino x:0-3 and y:1", function(){
 		let stringField = `
 			----
 			XXXX
 			----
 			----
 		`
-		let transformation = tetris.buildTetramino(stringField)
-		let bodyTetramino = [
+		let transformation = tetris.buildTetromino(stringField)
+		let bodyTetromino = [
 			{x: 0, y: 1},
 			{x: 1, y: 1},
 			{x: 2, y: 1},
 			{x: 3, y: 1}
 		];
-		assert.deepEqual(transformation, bodyTetramino);
+		assert.deepEqual(transformation, bodyTetromino);
 	})
 	
-	it("options vertical tetramino x:3 and y:0-3", function(){
+	it("options vertical tetromino x:3 and y:0-3", function(){
 		let stringField = `
 			---X
 			---X
 			---X
 			---X
 		`
-		let transformation = tetris.buildTetramino(stringField)
-		let bodyTetramino =  [
+		let transformation = tetris.buildTetromino(stringField)
+		let bodyTetromino =  [
 		   {x: 3, y: 0}, 
 		   {x: 3, y: 1}, 
 		   {x: 3, y: 2}, 
 		   {x: 3, y: 3}
 		];
-		assert.deepEqual(transformation, bodyTetramino);
+		assert.deepEqual(transformation, bodyTetromino);
 	})
 	
-	it("options horizontal tetramino x:0-3 and y:0", function(){
+	it("options horizontal tetromino x:0-3 and y:0", function(){
 		let stringField = `
 			XXXX
 			----
 			----
 			----
 		`
-		let transformation = tetris.buildTetramino(stringField)
-		let bodyTetramino = [
+		let transformation = tetris.buildTetromino(stringField)
+		let bodyTetromino = [
 			{x: 0, y: 0},
 			{x: 1, y: 0},
 			{x: 2, y: 0},
 			{x: 3, y: 0}
 		];
-		assert.deepEqual(transformation, bodyTetramino);
+		assert.deepEqual(transformation, bodyTetromino);
 	})
 	
 })
 
-describe("generation tetramino, the size tetramino 5x5", function(){
-	it("invalid length tetramino is an error", function(){
+describe("generation tetromino, the size tetromino 5x5", function(){
+	it("invalid length tetromino is an error", function(){
 		let stringField = `
 			XXXXX
 			-----
@@ -544,11 +544,11 @@ describe("generation tetramino, the size tetramino 5x5", function(){
 			-----
 		`
 		assert.throws(function(){
-			tetris.buildTetramino(stringField)
+			tetris.buildTetromino(stringField)
 		})
 	})
 	
-	it("invalid length tetramino is an error", function(){
+	it("invalid length tetromino is an error", function(){
 		let stringField = `
 			--X-
 			--X-
@@ -557,13 +557,13 @@ describe("generation tetramino, the size tetramino 5x5", function(){
 			--X-
 		`
 		assert.throws(function(){
-			tetris.buildTetramino(stringField)
+			tetris.buildTetromino(stringField)
 		})
 	})
 })
 
-describe("generation tetramino, the size tetramino 3x3", function(){
-	 it("invalid length tetramino is an error", function(){
+describe("generation tetromino, the size tetromino 3x3", function(){
+	 it("invalid length tetromino is an error", function(){
 		let stringField = `
 			---
 			-X-
@@ -572,11 +572,11 @@ describe("generation tetramino, the size tetramino 3x3", function(){
 			---
 		`
 		assert.throws(function(){
-			tetris.buildTetramino(stringField)
+			tetris.buildTetromino(stringField)
 		})
 	})
 	
-	it("invalid length horizontal tetramino is an error", function(){
+	it("invalid length horizontal tetromino is an error", function(){
 		let stringField = `
 			---
 			---
@@ -585,31 +585,31 @@ describe("generation tetramino, the size tetramino 3x3", function(){
 			---
 		`
 		assert.throws(function(){
-			tetris.buildTetramino(stringField)
+			tetris.buildTetromino(stringField)
 		})
 	})
 })
 
-describe("generation T tetramino", function(){
-	it("turned up T tetramino x:1-3 and y:0-1", function(){
+describe("generation T tetromino", function(){
+	it("turned up T tetromino x:1-3 and y:0-1", function(){
 		let stringField = `
 			--X--
 			-XXX-
 			-----
 
 		`
-		let transformation = tetris.buildTetramino(stringField)
-		let bodyTetramino =  [ 
+		let transformation = tetris.buildTetromino(stringField)
+		let bodyTetromino =  [ 
 		   {x: 1, y: 1},
 		   {x: 2, y: 0},		   
 		   {x: 2, y: 1},
 		   {x: 3, y: 1}
 		   
 		];
-		assert.deepEqual(transformation, bodyTetramino);
+		assert.deepEqual(transformation, bodyTetromino);
 	})
 	
-	it("turned up T tetramino in the middle of the field x:1-3 and y:1-2", function(){
+	it("turned up T tetromino in the middle of the field x:1-3 and y:1-2", function(){
 		let stringField = `
 			-----
 			--X--
@@ -617,51 +617,51 @@ describe("generation T tetramino", function(){
 			-----
 
 		`
-		let transformation = tetris.buildTetramino(stringField)
-		let bodyTetramino =  [ 
+		let transformation = tetris.buildTetromino(stringField)
+		let bodyTetromino =  [ 
 		   {x: 1, y: 2},
 		   {x: 2, y: 1},
 		   {x: 2, y: 2},
 		   {x: 3, y: 2}
 		   
 		];
-		assert.deepEqual(transformation, bodyTetramino);
+		assert.deepEqual(transformation, bodyTetromino);
 	})
 	
-	it("turned up T tetramino x:1-3 and y:1-2", function(){
+	it("turned up T tetromino x:1-3 and y:1-2", function(){
 		let stringField = `
 			-----
 			--X--
 			-XXX-
 			
 		`
-		let transformation = tetris.buildTetramino(stringField)
-		let bodyTetramino = [
+		let transformation = tetris.buildTetromino(stringField)
+		let bodyTetromino = [
 			{x: 1, y: 2},
 			{x: 2, y: 1}, 
 			{x: 2, y: 2},
 			{x: 3, y: 2}
 		];
-		assert.deepEqual(transformation, bodyTetramino);
+		assert.deepEqual(transformation, bodyTetromino);
 	})
 	
-	it("turned left T tetramino x:1-2 and y:0-2", function(){
+	it("turned left T tetromino x:1-2 and y:0-2", function(){
 		let stringField = `
 			--X--
 			-XX--
 			--X--
 		`
-		let transformation = tetris.buildTetramino(stringField)
-		let bodyTetramino =  [ 
+		let transformation = tetris.buildTetromino(stringField)
+		let bodyTetromino =  [ 
 		   {x: 1, y: 1},
 		   {x: 2, y: 0},
 		   {x: 2, y: 1},
 		   {x: 2, y: 2}
 		];
-		assert.deepEqual(transformation, bodyTetramino);
+		assert.deepEqual(transformation, bodyTetromino);
 	})
 	
-	it("turned left T tetramino in the middle of the field x:1-2 and y:1-3", function(){
+	it("turned left T tetromino in the middle of the field x:1-2 and y:1-3", function(){
 		let stringField = `
 			-----
 			--X--
@@ -669,34 +669,34 @@ describe("generation T tetramino", function(){
 			--X--
 			-----
 		`
-		let transformation = tetris.buildTetramino(stringField)
-		let bodyTetramino =  [ 
+		let transformation = tetris.buildTetromino(stringField)
+		let bodyTetromino =  [ 
 		   {x: 1, y: 2},
 		   {x: 2, y: 1},
 		   {x: 2, y: 2},
 		   {x: 2, y: 3}
 		];
-		assert.deepEqual(transformation, bodyTetramino);
+		assert.deepEqual(transformation, bodyTetromino);
 	})
 	
-	it("turned down T tetramino x:1-3 and y:1-2", function(){
+	it("turned down T tetromino x:1-3 and y:1-2", function(){
 		let stringField = `
 			-----
 			-XXX-
 			--X--
 			
 		`
-		let transformation = tetris.buildTetramino(stringField)
-		let bodyTetramino = [
+		let transformation = tetris.buildTetromino(stringField)
+		let bodyTetromino = [
 			{x: 1, y: 1},
 			{x: 2, y: 1},
 			{x: 2, y: 2},
 			{x: 3, y: 1}
 		];
-		assert.deepEqual(transformation, bodyTetramino);
+		assert.deepEqual(transformation, bodyTetromino);
 	})
 	
-	it("turned down T tetramino in the middle of the field x:1-3 and y:1-2", function(){
+	it("turned down T tetromino in the middle of the field x:1-3 and y:1-2", function(){
 		let stringField = `
 			-----
 			-XXX-
@@ -704,34 +704,34 @@ describe("generation T tetramino", function(){
 			-----
 			
 		`
-		let transformation = tetris.buildTetramino(stringField)
-		let bodyTetramino = [
+		let transformation = tetris.buildTetromino(stringField)
+		let bodyTetromino = [
 			{x: 1, y: 1},
 			{x: 2, y: 1},
 			{x: 2, y: 2},
 			{x: 3, y: 1}
 		];
-		assert.deepEqual(transformation, bodyTetramino);
+		assert.deepEqual(transformation, bodyTetromino);
 	})
 	
-	it("turned right T tetramino x:2-3 and y:0-2", function(){
+	it("turned right T tetromino x:2-3 and y:0-2", function(){
 		let stringField = `
 			--X--
 			--XX-
 			--X--
 			
 		`
-		let transformation = tetris.buildTetramino(stringField)
-		let bodyTetramino = [
+		let transformation = tetris.buildTetromino(stringField)
+		let bodyTetromino = [
 			{x: 2, y: 0},
 			{x: 2, y: 1},
 			{x: 2, y: 2},
 			{x: 3, y: 1}
 		];
-		assert.deepEqual(transformation, bodyTetramino);
+		assert.deepEqual(transformation, bodyTetromino);
 	})
 	
-	it("turned right T tetramino in the middle of the field x:2-3 and y:1-3", function(){
+	it("turned right T tetromino in the middle of the field x:2-3 and y:1-3", function(){
 		let stringField = `
 			-----
 			--X--
@@ -740,44 +740,44 @@ describe("generation T tetramino", function(){
 			-----
 			
 		`
-		let transformation = tetris.buildTetramino(stringField)
-		let bodyTetramino = [
+		let transformation = tetris.buildTetromino(stringField)
+		let bodyTetromino = [
 			{x: 2, y: 1},
 			{x: 2, y: 2},
 			{x: 2, y: 3},
 			{x: 3, y: 2}
 		];
-		assert.deepEqual(transformation, bodyTetramino);
+		assert.deepEqual(transformation, bodyTetromino);
 	})
 	
 })
-describe("generation Z Tetramino", function(){
-	it("Initial position Z tetramino", function(){
+describe("generation Z Tetromino", function(){
+	it("Initial position Z tetromino", function(){
 		let stringField = `
 			-XX--
 			--XX-
 			-----
 		`
-		let transformation = tetris.buildTetramino(stringField)
-		let bodyTetramino =  [ 
+		let transformation = tetris.buildTetromino(stringField)
+		let bodyTetromino =  [ 
 		   {x: 1, y: 0},
 		   {x: 2, y: 0},		   
 		   {x: 2, y: 1},
 		   {x: 3, y: 1}
 		   
 		];
-		assert.deepEqual(transformation, bodyTetramino);
+		assert.deepEqual(transformation, bodyTetromino);
 	})
 	
-	it("Tetramino Z looks up", function(){
+	it("Tetromino Z looks up", function(){
 		let stringField =`
 			--X--
 			-XX--
 			-X---
 			-----
 		`
-		let transformation = tetris.buildTetramino(stringField)
-		let bodyTetramino =  [ 
+		let transformation = tetris.buildTetromino(stringField)
+		let bodyTetromino =  [ 
 		   {x: 1, y: 1},
 		   {x: 1, y: 2},
            {x: 2, y: 0},		   
@@ -785,28 +785,28 @@ describe("generation Z Tetramino", function(){
 		   
 		   
 		];
-		assert.deepEqual(transformation, bodyTetramino);	
+		assert.deepEqual(transformation, bodyTetromino);	
 	})
 	
-	it("Tetramino Z inside field ", function(){
+	it("Tetromino Z inside field ", function(){
 		let stringField =`
 			-----
 			-XX--
 			--XX-
 			-----
 		`
-		let transformation = tetris.buildTetramino(stringField)
-		let bodyTetramino =  [ 
+		let transformation = tetris.buildTetromino(stringField)
+		let bodyTetromino =  [ 
 		   {x: 1, y: 1},
 		   {x: 2, y: 1},		   
 		   {x: 2, y: 2},
 		   {x: 3, y: 2}
 		   
 		];
-		assert.deepEqual(transformation, bodyTetramino);
+		assert.deepEqual(transformation, bodyTetromino);
 	})
 	
-	it("Tetramino Z looks up inside field", function(){
+	it("Tetromino Z looks up inside field", function(){
 		let stringField =`
 			-----
 			--X--
@@ -815,8 +815,8 @@ describe("generation Z Tetramino", function(){
 			-----
 			
 		`
-		let transformation = tetris.buildTetramino(stringField)
-		let bodyTetramino =  [ 
+		let transformation = tetris.buildTetromino(stringField)
+		let bodyTetromino =  [ 
 		   {x: 1, y: 2},
 		   {x: 1, y: 3},
 		   {x: 2, y: 1},
@@ -824,64 +824,64 @@ describe("generation Z Tetramino", function(){
 		   
 		   
 		];
-		assert.deepEqual(transformation, bodyTetramino);
+		assert.deepEqual(transformation, bodyTetromino);
 	})
 	
 })
 
-describe("generation mirror Z Tetramino", function(){
-	it("Initial position mirror Z tetramino", function(){
+describe("generation mirror Z Tetromino", function(){
+	it("Initial position mirror Z tetromino", function(){
 		let stringField = `
 			--XX-
 			-XX--
 			-----
 		`
-		let transformation = tetris.buildTetramino(stringField)
-		let bodyTetramino =  [
+		let transformation = tetris.buildTetromino(stringField)
+		let bodyTetromino =  [
 		   {x: 1, y: 1},
 		   {x: 2, y: 0},
 		   {x: 2, y: 1},
 		   {x: 3, y: 0}		   		   
 		];
-		assert.deepEqual(transformation, bodyTetramino);
+		assert.deepEqual(transformation, bodyTetromino);
 	})
 	
-	it("Tetramino mirror Z looks up", function(){
+	it("Tetromino mirror Z looks up", function(){
 		let stringField =`
 			-X---
 			-XX--
 			--X--
 			-----
 		`
-		let transformation = tetris.buildTetramino(stringField)
-		let bodyTetramino =  [ 
+		let transformation = tetris.buildTetromino(stringField)
+		let bodyTetromino =  [ 
 		   {x: 1, y: 0},
 		   {x: 1, y: 1},		   
 		   {x: 2, y: 1},
 		   {x: 2, y: 2}
 		   
 		];
-		assert.deepEqual(transformation, bodyTetramino);	
+		assert.deepEqual(transformation, bodyTetromino);	
 	})
 	
-	it("Initial position mirror Z tetramino", function(){
+	it("Initial position mirror Z tetromino", function(){
 		let stringField = `
 			-----
 			--XX-
 			-XX--
 			-----
 		`
-		let transformation = tetris.buildTetramino(stringField)
-		let bodyTetramino =  [
+		let transformation = tetris.buildTetromino(stringField)
+		let bodyTetromino =  [
 		   {x: 1, y: 2},	
 		   {x: 2, y: 1},
 		   {x: 2, y: 2},
 		   {x: 3, y: 1},		   
 		];
-		assert.deepEqual(transformation, bodyTetramino);
+		assert.deepEqual(transformation, bodyTetromino);
 	})
 	
-	it("Tetramino mirror Z looks up", function(){
+	it("Tetromino mirror Z looks up", function(){
 		let stringField =`
 			-----
 			-X---
@@ -889,187 +889,187 @@ describe("generation mirror Z Tetramino", function(){
 			--X--
 			-----
 		`
-		let transformation = tetris.buildTetramino(stringField)
-		let bodyTetramino =  [ 
+		let transformation = tetris.buildTetromino(stringField)
+		let bodyTetromino =  [ 
 		   {x: 1, y: 1},
 		   {x: 1, y: 2},		   
 		   {x: 2, y: 2},
 		   {x: 2, y: 3}
 		   
 		];
-		assert.deepEqual(transformation, bodyTetramino);	
+		assert.deepEqual(transformation, bodyTetromino);	
 	})
 })
 
-describe("generation L Tetramino", function(){
+describe("generation L Tetromino", function(){
 	
-	it("Starting position L Tetramino", function(){
+	it("Starting position L Tetromino", function(){
 		let stringField =`
 			--X--
 			--X--
 			--XX-
 			
 		`
-		let transformation = tetris.buildTetramino(stringField)
-		let bodyTetramino =  [ 
+		let transformation = tetris.buildTetromino(stringField)
+		let bodyTetromino =  [ 
 		   {x: 2, y: 0},
 		   {x: 2, y: 1},		   
 		   {x: 2, y: 2},
 		   {x: 3, y: 2}
 		   
 		];
-		assert.deepEqual(transformation, bodyTetramino);	
+		assert.deepEqual(transformation, bodyTetromino);	
 	})
 	
-	it("L Tetramino turned to the left", function(){
+	it("L Tetromino turned to the left", function(){
 		let stringField =`
 			-----
 			-XXX-
 			-X---
 			
 		`
-		let transformation = tetris.buildTetramino(stringField)
-		let bodyTetramino =  [ 
+		let transformation = tetris.buildTetromino(stringField)
+		let bodyTetromino =  [ 
 		   {x: 1, y: 1},
 		   {x: 1, y: 2},
 		   {x: 2, y: 1},		   
 		   {x: 3, y: 1}
 		   
 		];
-		assert.deepEqual(transformation, bodyTetramino);	
+		assert.deepEqual(transformation, bodyTetromino);	
 	})
 	
-	it("L Tetramino turned to the top", function(){
+	it("L Tetromino turned to the top", function(){
 		let stringField =`
 			-XX--
 			--X--
 			--X--
 			
 		`
-		let transformation = tetris.buildTetramino(stringField)
-		let bodyTetramino =  [ 
+		let transformation = tetris.buildTetromino(stringField)
+		let bodyTetromino =  [ 
 		   {x: 1, y: 0},
 		   {x: 2, y: 0},		   
 		   {x: 2, y: 1},
 		   {x: 2, y: 2}
 		   
 		];
-		assert.deepEqual(transformation, bodyTetramino);	
+		assert.deepEqual(transformation, bodyTetromino);	
 	})
 	
-	it("L Tetramino turned to the right", function(){
+	it("L Tetromino turned to the right", function(){
 		let stringField =`
 			---X-
 			-XXX-
 			-----
 			
 		`
-		let transformation = tetris.buildTetramino(stringField)
-		let bodyTetramino =  [ 
+		let transformation = tetris.buildTetromino(stringField)
+		let bodyTetromino =  [ 
 		   {x: 1, y: 1},		   
 		   {x: 2, y: 1},
 		   {x: 3, y: 0},
 		   {x: 3, y: 1}
 		   
 		];
-		assert.deepEqual(transformation, bodyTetramino);	
+		assert.deepEqual(transformation, bodyTetromino);	
 	})
 })
 
-describe("generation J Tetramino", function(){
-	it("Starting position J Tetramino", function(){
+describe("generation J Tetromino", function(){
+	it("Starting position J Tetromino", function(){
 		let stringField =`
 			--X--
 			--X--
 			-XX--
 			
 		`
-		let transformation = tetris.buildTetramino(stringField)
-		let bodyTetramino =  [ 
+		let transformation = tetris.buildTetromino(stringField)
+		let bodyTetromino =  [ 
 		   {x: 1, y: 2},
 		   {x: 2, y: 0},
 		   {x: 2, y: 1},		   
 		   {x: 2, y: 2}
 		   
 		];
-		assert.deepEqual(transformation, bodyTetramino);	
+		assert.deepEqual(transformation, bodyTetromino);	
 	})
 	
-	it("J Tetramino turned to the right", function(){
+	it("J Tetromino turned to the right", function(){
 		let stringField =`
 			-X---
 			-XXX-
 			-----
 			
 		`
-		let transformation = tetris.buildTetramino(stringField)
-		let bodyTetramino =  [ 
+		let transformation = tetris.buildTetromino(stringField)
+		let bodyTetromino =  [ 
 		   {x: 1, y: 0},
 		   {x: 1, y: 1},		   
 		   {x: 2, y: 1},
 		   {x: 3, y: 1}
 		   
 		];
-		assert.deepEqual(transformation, bodyTetramino);	
+		assert.deepEqual(transformation, bodyTetromino);	
 	})
 	
-	it("J Tetramino turned to the top", function(){
+	it("J Tetromino turned to the top", function(){
 		let stringField =`
 			--XX-
 			--X--
 			--X--
 			
 		`
-		let transformation = tetris.buildTetramino(stringField)
-		let bodyTetramino =  [ 
+		let transformation = tetris.buildTetromino(stringField)
+		let bodyTetromino =  [ 
 		   {x: 2, y: 0},		   
 		   {x: 2, y: 1},
 		   {x: 2, y: 2},
 		   {x: 3, y: 0}
 		   
 		];
-		assert.deepEqual(transformation, bodyTetramino);	
+		assert.deepEqual(transformation, bodyTetromino);	
 	})
 	
-	it("J Tetramino turned to the right", function(){
+	it("J Tetromino turned to the right", function(){
 		let stringField =`
 			-----
 			-XXX-
 			---X-
 			
 		`
-		let transformation = tetris.buildTetramino(stringField)
-		let bodyTetramino =  [ 
+		let transformation = tetris.buildTetromino(stringField)
+		let bodyTetromino =  [ 
 		   {x: 1, y: 1},		   
 		   {x: 2, y: 1},
 		   {x: 3, y: 1},
 		   {x: 3, y: 2}
 		   
 		];
-		assert.deepEqual(transformation, bodyTetramino);	
+		assert.deepEqual(transformation, bodyTetromino);	
 	})
 })
 
-describe("generation Square Tetramino", function(){
-	it("Square Tetramino turned to the right", function(){
+describe("generation Square Tetromino", function(){
+	it("Square Tetromino turned to the right", function(){
 		let stringField =`
 			--XX-
 			--XX-
 			-----
 			
 		`
-		let transformation = tetris.buildTetramino(stringField)
-		let bodyTetramino =  [ 
+		let transformation = tetris.buildTetromino(stringField)
+		let bodyTetromino =  [ 
 		   {x: 2, y: 0},
 		   {x: 2, y: 1},		   
 		   {x: 3, y: 0},
 		   {x: 3, y: 1}
 		   
 		];
-		assert.deepEqual(transformation, bodyTetramino);	
+		assert.deepEqual(transformation, bodyTetromino);	
 	})
 	
-	it("Square Tetramino inside field", function(){
+	it("Square Tetromino inside field", function(){
 		let stringField =`
 			-----
 			--XX-
@@ -1077,49 +1077,49 @@ describe("generation Square Tetramino", function(){
 			-----
 			
 		`
-		let transformation = tetris.buildTetramino(stringField)
-		let bodyTetramino =  [ 
+		let transformation = tetris.buildTetromino(stringField)
+		let bodyTetromino =  [ 
 		   {x: 2, y: 1},
 		   {x: 2, y: 2},		   
 		   {x: 3, y: 1},
 		   {x: 3, y: 2}
 		   
 		];
-		assert.deepEqual(transformation, bodyTetramino);	
+		assert.deepEqual(transformation, bodyTetromino);	
 	})
 })
 
-describe("L-tetramino rotation 4x4", function() {
-	let field = tetris.buildField(`
+describe("L-tetromino rotation", function() {
+	let emptyField = tetris.buildField(`
 		----
 		----
 		----
 		----
 	`);
 	
-	it('After 4 turns on an empty field, the L-tetramino should remain in the same place where it was;', function(){
-		let L_Tetramino = tetris.buildTetramino(`
+	it('After 4 turns on an empty emptyField, the L-tetromino should remain in the same place where it was;', function(){
+		let tetromino = tetris.buildTetromino(`
 			----
 			--X-
 			XXX-
 			----
 		`);
-		let rotated90_L_Tetramino = tetris.rotateTetramino_L(field, L_Tetramino);
-		let rotated180_L_Tetramino = tetris.rotateTetramino_L(field, rotated90_L_Tetramino);
-		let rotated270_L_Tetramino = tetris.rotateTetramino_L(field, rotated180_L_Tetramino);
-		let rotated360_L_Tetramino = tetris.rotateTetramino_L(field, rotated270_L_Tetramino);
-		asert.deepEqual(L_Tetramino, rotated360_L_Tetramino);
+		let rotated90_L_Tetromino = tetris.rotateLine(emptyField, tetromino);
+		let rotated180_L_Tetromino = tetris.rotateLine(emptyField, rotated90_L_Tetromino);
+		let rotated270_L_Tetromino = tetris.rotateLine(emptyField, rotated180_L_Tetromino);
+		let rotated360_L_Tetromino = tetris.rotateLine(emptyField, rotated270_L_Tetromino);
+		asert.deepEqual(tetromino, rotated360_L_Tetromino);
 	})
 	
-	it('The first rotate L-tetramino successful', function(){
-		let L_Tetramino = tetris.buildTetramino(`
+	it('The first rotation L-tetromino successful', function(){
+		let tetromino = tetris.buildTetromino(`
 			----
 			--X-
 			XXX-
 			----
 		`);
-		let rotated90_L = tetris.rotateTetramino_L(field, L_Tetramino);
-		let expected90_L = tetris.buildTetramino(`
+		let rotated90_L = tetris.rotateLine(emptyField, tetromino);
+		let expected90_L = tetris.buildTetromino(`
 			----
 			XX--
 			-X--
@@ -1128,16 +1128,15 @@ describe("L-tetramino rotation 4x4", function() {
 		asert.deepEqual(rotated90_L, expected90_L);
 	})
 	
-	it('The second rotate L-tetramino successful', function(){
-		let L_Tetramino = tetris.buildTetramino(`
+	it('The second rotation L-tetromino successful', function(){
+		let tetromino = tetris.buildTetromino(`
 			----
-			--X-
-			XXX-
-			----
+			XX--
+			-X--
+			-X--
 		`);
-		let rotated90_L = tetris.rotateTetramino_L(field, L_Tetramino);
-		let rotated180_L = tetris.rotateTetramino_L(field, rotated90_L);
-		let expected180_L = tetris.buildTetramino(`
+		let rotated90_L = tetris.rotateLine(emptyField, tetromino);
+		let expected90_L = tetris.buildTetromino(`
 			----
 			XXX-
 			X---
@@ -1146,17 +1145,15 @@ describe("L-tetramino rotation 4x4", function() {
 		asert.deepEqual(rotated180_L, expected180_L);
 	})
 	
-	it('The third rotate L-tetramino successful', function(){
-		let L_Tetramino = tetris.buildTetramino(`
+	it('The third rotation L-tetromino successful', function(){
+		let tetromino = tetris.buildTetromino(`
 			----
-			--X-
 			XXX-
+			X---
 			----
 		`);
-		let rotated90_L = tetris.rotateTetramino_L(field, L_Tetramino);
-		let rotated180_L = tetris.rotateTetramino_L(field, rotated90_L);
-		let rotated270_L = tetris.rotateTetramino_L(field, rotated180_L);
-		let expected270_L = tetris.buildTetramino(`
+		let rotated90_L = tetris.rotateLine(emptyField, tetromino);
+		let expected90_L = tetris.buildTetromino(`
 			----
 			X---
 			X---
@@ -1165,32 +1162,32 @@ describe("L-tetramino rotation 4x4", function() {
 		asert.deepEqual(rotated270_L, expected270_L);
 	})
 	
-	it('L-tetramino too low to turn', function(){
-		let L_Tetramino = tetris.buildTetramino(`
+	it('L-tetromino too low to turn', function(){
+		let tetromino = tetris.buildTetromino(`
 			----
 			----
 			--X-
 			XXX-
 		`);
-		let attemptRotation = tetris.rotateTetramino_L(field, L_Tetramino);
-		asert.deepEqual(L_Tetramino, attemptRotation);
+		let attemptRotation = tetris.rotateLine(emptyField, tetromino);
+		asert.deepEqual(tetromino, attemptRotation);
 	})
 	
-	it("L-tetramino can't turn 90 degrees", function(){
-		let L_Tetramino = tetris.buildTetramino(`
+	it("L-tetromino can't turn 90 degrees", function(){
+		let tetromino = tetris.buildTetromino(`
 			----
 			--X-
 			XXX-
 			----
 		`);
-		let field = tetris.buildField(`
+		let notEmptyField = tetris.buildField(`
 			----
 			-X--
 			----
 			----
 		`)
-		let actual90_L = tetris.rotateTetramino_L(field, L_Tetramino);
-		let expected90_L = tetris.buildTetramino(`
+		let actual90_L = tetris.rotateLine(notEmptyField, tetromino);
+		let expected90_L = tetris.buildTetromino(`
 			----
 			--X-
 			XXX-
@@ -1199,22 +1196,22 @@ describe("L-tetramino rotation 4x4", function() {
 		asert.deepEqual(actual90_L, expected90_L);
 	})
 	
-	it("L-tetramino can't turn 180 degrees", function(){
-		let L_Tetramino = tetris.buildTetramino(`
+	it("L-tetromino can't turn 180 degrees", function(){
+		let tetromino = tetris.buildTetromino(`
 			----
-			--X-
-			XXX-
-			----
+			XX--
+			-X--
+			-X--
 		`);
-		let field = tetris.buildField(`
+		let notEmptyField = tetris.buildField(`
 			----
 			----
 			X---
 			----
 		`)
-		let actual90_L = tetris.rotateTetramino_L(field, L_Tetramino);
-		let actual180_L = tetris.rotateTetramino_L(field, actual90_L);
-		let expected180_L = tetris.buildTetramino(`
+		let actual90_L = tetris.rotateLine(notEmptyField, tetromino);
+		let actual180_L = tetris.rotateLine(notEmptyField, actual90_L);
+		let expected180_L = tetris.buildTetromino(`
 			----
 			XX--
 			-X--
