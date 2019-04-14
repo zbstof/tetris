@@ -1206,4 +1206,23 @@ describe("L-tetromino rotation", function() {
 		asert.deepEqual(actual180_L, expected180_L);
 	})
 	
+	it("L-tetromino can't turn degrees", function(){
+		let tetromino = tetris.buildTetromino(`
+			----
+			XX--
+			-X--
+			-X--
+		`);
+		let notEmptyField = tetris.buildField(`
+			----
+			----
+			X---
+			----
+		`)
+		
+		assert.throws(function(){
+			tetris.buildField(stringField)
+		})
+	})
+	
 })
