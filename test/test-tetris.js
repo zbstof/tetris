@@ -1260,17 +1260,6 @@ describe("L-tetromino rotation 4x4", function() {
 	
 })
 
-
-
-
-
-
-
-
-
-
-
-
 describe("L-tetromino rotation 3x3", function() {
 	let emptyField = tetris.buildField(`
 		---
