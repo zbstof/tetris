@@ -1089,7 +1089,7 @@ describe("generation Square Tetromino", function(){
 	})
 })
 
-describe("L-tetromino rotation", function() {
+describe("L-tetromino rotation 4x4", function() {
 	let emptyField = tetris.buildField(`
 		----
 		----
@@ -1165,9 +1165,9 @@ describe("L-tetromino rotation", function() {
 	it('L-tetromino too low to turn', function(){
 		let tetromino = tetris.buildTetromino(`
 			----
-			----
 			--X-
 			XXX-
+			----
 		`);
 		let attemptRotation = tetris.rotateLine(emptyField, tetromino);
 		asert.deepEqual(tetromino, attemptRotation);
@@ -1251,6 +1251,170 @@ describe("L-tetromino rotation", function() {
 			----
 			--X-
 			----
+		`)
+		
+		assert.throws(function(){
+			tetris.buildField(stringField)
+		})
+	})
+	
+})
+
+
+
+
+
+
+
+
+
+
+
+
+describe("L-tetromino rotation 3x3", function() {
+	let emptyField = tetris.buildField(`
+		---
+		---
+		---
+	`);
+	
+	it('After 4 turns on an empty emptyField, the L-tetromino should remain in the same place where it was;', function(){
+		let tetromino = tetris.buildTetromino(`
+			
+			--X
+			XXX
+			---
+		`);
+		let rotated90_L_Tetromino = tetris.rotateLine(emptyField, tetromino);
+		let rotated180_L_Tetromino = tetris.rotateLine(emptyField, rotated90_L_Tetromino);
+		let rotated270_L_Tetromino = tetris.rotateLine(emptyField, rotated180_L_Tetromino);
+		let rotated360_L_Tetromino = tetris.rotateLine(emptyField, rotated270_L_Tetromino);
+		asert.deepEqual(tetromino, rotated360_L_Tetromino);
+	})
+	
+	it('The first rotation L-tetromino successful', function(){
+		let tetromino = tetris.buildTetromino(`
+			--X
+			XXX
+			---
+		`);
+		let rotated90_L = tetris.rotateLine(emptyField, tetromino);
+		let expected90_L = tetris.buildTetromino(`
+			XX-
+			-X-
+			-X-
+		`);
+		asert.deepEqual(rotated90_L, expected90_L);
+	})
+	
+	it('The second rotation L-tetromino successful', function(){
+		let tetromino = tetris.buildTetromino(`			
+			XX-
+			-X-
+			-X-
+		`);
+		let rotated90_L = tetris.rotateLine(emptyField, tetromino);
+		let expected90_L = tetris.buildTetromino(`
+			XXX-
+			X---
+			----
+		`);
+		asert.deepEqual(rotated180_L, expected180_L);
+	})
+	
+	it('The third rotation L-tetromino successful', function(){
+		let tetromino = tetris.buildTetromino(`
+			XXX-
+			X---
+			----
+		`);
+		let rotated90_L = tetris.rotateLine(emptyField, tetromino);
+		let expected90_L = tetris.buildTetromino(`
+			X---
+			X---
+			XX--
+		`);
+		asert.deepEqual(rotated270_L, expected270_L);
+	})
+	
+	it('L-tetromino too low to turn', function(){
+		let tetromino = tetris.buildTetromino(`
+			--X
+			XXX
+			---
+		`);
+		let attemptRotation = tetris.rotateLine(emptyField, tetromino);
+		asert.deepEqual(tetromino, attemptRotation);
+	})
+	
+	it("L-tetromino can't turn 90 degrees", function(){
+		let tetromino = tetris.buildTetromino(`
+			--X
+			XXX
+			---
+		`);
+		let notEmptyField = tetris.buildField(`
+			-X-
+			---
+			---
+		`)
+		let actual90_L = tetris.rotateLine(notEmptyField, tetromino);
+		let expected90_L = tetris.buildTetromino(`
+			--X
+			XXX
+			---
+		`);
+		asert.deepEqual(actual90_L, expected90_L);
+	})
+	
+	it("L-tetromino can't turn 180 degrees", function(){
+		let tetromino = tetris.buildTetromino(`
+			XX-
+			-X-
+			-X-
+		`);
+		let notEmptyField = tetris.buildField(`
+			---
+			X--
+			---
+		`)
+		let actual90_L = tetris.rotateLine(notEmptyField, tetromino);
+		let actual180_L = tetris.rotateLine(notEmptyField, actual90_L);
+		let expected180_L = tetris.buildTetromino(`
+			XX-
+			-X-
+			-X-
+		`);
+		asert.deepEqual(actual180_L, expected180_L);
+	})
+	
+	it("L-tetromino can't turn", function(){
+		let tetromino = tetris.buildTetromino(`
+			XX-
+			-X-
+			-X-
+		`);
+		let notEmptyField = tetris.buildField(`
+			X--
+			---
+			---
+		`)
+		
+		assert.throws(function(){
+			tetris.buildField(stringField)
+		})
+	})
+	
+	it("L-tetromino can't turn second test", function(){
+		let tetromino = tetris.buildTetromino(`
+			--X
+			XXX
+			---
+		`);
+		let notEmptyField = tetris.buildField(`
+			---
+			--X
+			---
 		`)
 		
 		assert.throws(function(){
