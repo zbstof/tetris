@@ -1,19 +1,19 @@
 module.exports = {
 	//тетрамино массив из 4 координат [{x: 1, y: 2}, {x: 2, y: 2}, {x: 3, y: 2}, {x: 4, y: 2}]
 	// field это массив двухмерный булин значений, если true в ней есть блок, false блока нет
-	rotateLine: function(field, tetramino){
+	rotateLine: function(field, tetromino){
 		let lengthField_X = field[0].length;
 		let lengthField_Y = field.length;
 		let turningPoint = [];
 		let arrCoordinates_X  = [];
 		let arrCoordinates_Y  = [];
 		let a = -1;
-		let localTetramino = []
+		let localTetromino = []
 		
-		tetramino.forEach(function(elem){
-			localTetramino.push(Object.assign({},elem));
+		tetromino.forEach(function(elem){
+			localTetromino.push(Object.assign({},elem));
 		})
-		tetramino.forEach(function(elem){
+		tetromino.forEach(function(elem){
 			turningPoint.push(Object.assign({},elem));
 		})
 		
@@ -31,26 +31,26 @@ module.exports = {
 			}
 			let newPosition = allItemsOnTheField(turningPoint)
 			if(checkThatTheFieldIsFree(newPosition)){
-				return localTetramino
+				return localTetromino
 			}else{
 				return newPosition
 			}
 		}
 		
 		if((arrCoordinates_X[0] == arrCoordinates_X[1]) && (arrCoordinates_X[2] == arrCoordinates_X[3]) && (arrCoordinates_X[1] == arrCoordinates_X[2])){
-			let cloneTetramino = [];
+			let cloneTetromino = [];
 				turningPoint.forEach(function(elem){
-				cloneTetramino.push(Object.assign({},elem));
+				cloneTetromino.push(Object.assign({},elem));
 			})				
-			for(let i of cloneTetramino){
+			for(let i of cloneTetromino){
 				i.y = arrCoordinates_Y[1];
 				i.x = arrCoordinates_X[0] + a;
 				a++;
 			}
 			
-			let newPosition = allItemsOnTheField(cloneTetramino)
+			let newPosition = allItemsOnTheField(cloneTetromino)
 			if(checkThatTheFieldIsFree(newPosition)){
-				return localTetramino
+				return localTetromino
 			}else{
 				return newPosition
 			}
@@ -59,7 +59,7 @@ module.exports = {
 		function allItemsOnTheField(elem){
 			for(let i of elem){
 				if((i.x < 0 || i.y < 0)  || (i.x >= lengthField_X) || (i.y >= lengthField_Y)){
-					return localTetramino;
+					return localTetromino;
 				}
 			}
 			return elem;
@@ -129,7 +129,7 @@ module.exports = {
 		return newArr;
 	},
 	
-	buildTetramino: function(stringOfCoordinates){
+	buildTetromino: function(stringOfCoordinates){
 		let math = stringOfCoordinates.split("\n")
 		let arrayOfCoordinates = []
 		let quantityElem = 0;
@@ -172,7 +172,7 @@ module.exports = {
 			}					
 		}
 		if(quantityElem != 4){
-			throw new Error("tetramino size is not correct");
+			throw new Error("tetromino size is not correct");
 		} 
 		return arrayOfCoordinates;
 		
