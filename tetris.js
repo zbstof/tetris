@@ -1,19 +1,19 @@
 module.exports = {
 	//тетрамино массив из 4 координат [{x: 1, y: 2}, {x: 2, y: 2}, {x: 3, y: 2}, {x: 4, y: 2}]
 	// field это массив двухмерный булин значений, если true в ней есть блок, false блока нет
-	rotateLine: function(field, tetramino){
+	rotateLine: function(field, tetromino){
 		let lengthField_X = field[0].length;
 		let lengthField_Y = field.length;
 		let turningPoint = [];
 		let arrCoordinates_X  = [];
 		let arrCoordinates_Y  = [];
 		let a = -1;
-		let localTetramino = []
+		let localTetromino = []
 		
-		tetramino.forEach(function(elem){
-			localTetramino.push(Object.assign({},elem));
+		tetromino.forEach(function(elem){
+			localTetromino.push(Object.assign({},elem));
 		})
-		tetramino.forEach(function(elem){
+		tetromino.forEach(function(elem){
 			turningPoint.push(Object.assign({},elem));
 		})
 		
@@ -31,26 +31,26 @@ module.exports = {
 			}
 			let newPosition = allItemsOnTheField(turningPoint)
 			if(checkThatTheFieldIsFree(newPosition)){
-				return localTetramino
+				return localTetromino
 			}else{
 				return newPosition
 			}
 		}
 		
 		if((arrCoordinates_X[0] == arrCoordinates_X[1]) && (arrCoordinates_X[2] == arrCoordinates_X[3]) && (arrCoordinates_X[1] == arrCoordinates_X[2])){
-			let cloneTetramino = [];
+			let cloneTetromino = [];
 				turningPoint.forEach(function(elem){
-				cloneTetramino.push(Object.assign({},elem));
+				cloneTetromino.push(Object.assign({},elem));
 			})				
-			for(let i of cloneTetramino){
+			for(let i of cloneTetromino){
 				i.y = arrCoordinates_Y[1];
 				i.x = arrCoordinates_X[0] + a;
 				a++;
 			}
 			
-			let newPosition = allItemsOnTheField(cloneTetramino)
+			let newPosition = allItemsOnTheField(cloneTetromino)
 			if(checkThatTheFieldIsFree(newPosition)){
-				return localTetramino
+				return localTetromino
 			}else{
 				return newPosition
 			}
@@ -59,7 +59,7 @@ module.exports = {
 		function allItemsOnTheField(elem){
 			for(let i of elem){
 				if((i.x < 0 || i.y < 0)  || (i.x >= lengthField_X) || (i.y >= lengthField_Y)){
-					return localTetramino;
+					return localTetromino;
 				}
 			}
 			return elem;
@@ -78,6 +78,106 @@ module.exports = {
 					return true
 				}
 			}
+		}
+		
+		if(arrCoordinates_X[0] < arrCoordinates_X[1] && arrCoordinates_X[1] < arrCoordinates_X[2] && arrCoordinates_X[2] == arrCoordinates_X[3] && arrCoordinates_Y[0] == arrCoordinates_Y[1]&& arrCoordinates_Y[1] > arrCoordinates_Y[2] && arrCoordinates_Y[2] < arrCoordinates_Y[3]){
+			function first_rotation_L(tetromino){
+				let newCoordenats = []
+				for(let i = 0, j = 0; i < tetromino.length; i++, j++){
+					let obj = {}
+					if(j == 0){
+						obj.x = tetromino[i].x;
+						obj.y = tetromino[i].y-1;
+					}else if(j == 1){
+						obj.x = tetromino[i].x;
+						obj.y = tetromino[i].y-1;
+					}else if( j == 2){
+						obj.x = tetromino[i].x-1;
+						obj.y = tetromino[i].y+1;
+					}else if( j == 3){
+						obj.x = tetromino[i].x-1;
+						obj.y = tetromino[i].y+1;
+					}
+					newCoordenats.push(obj)
+				}
+				return newCoordenats
+			}
+			return first_rotation_L(localTetromino)
+		}
+		
+		if(arrCoordinates_X[0] < arrCoordinates_X[1] && arrCoordinates_X[1] == arrCoordinates_X[2] && arrCoordinates_X[2] == arrCoordinates_X[3] && arrCoordinates_Y[0] == arrCoordinates_Y[1] && arrCoordinates_Y[1] < arrCoordinates_Y[2] && arrCoordinates_Y[2] < arrCoordinates_Y[3]){
+			function second_rotation_L(tetromino){
+				let newCoordenats = []
+				for(let i = 0, j = 0; i < tetromino.length; i++, j++){
+					let obj = {}
+					if(j == 0){
+						obj.x = tetromino[i].x;
+						obj.y = tetromino[i].y;
+					}else if(j == 1){
+						obj.x = tetromino[i].x-1;
+						obj.y = tetromino[i].y+1;
+					}else if( j == 2){
+						obj.x = tetromino[i].x;
+						obj.y = tetromino[i].y-1;
+					}else if( j == 3){
+						obj.x = tetromino[i].x+1;
+						obj.y = tetromino[i].y-2;
+					}
+					newCoordenats.push(obj)
+				}
+				return newCoordenats
+			}
+			return second_rotation_L(localTetromino)
+		}
+		
+		if(arrCoordinates_X[0] == arrCoordinates_X[1] && arrCoordinates_X[1] < arrCoordinates_X[2] && arrCoordinates_X[2] < arrCoordinates_X[3] && arrCoordinates_Y[0] < arrCoordinates_Y[1] && arrCoordinates_Y[1] > arrCoordinates_Y[2] && arrCoordinates_Y[2] == arrCoordinates_Y[3]){
+			function third_rotation_L(tetromino){
+				let newCoordenats = []
+				for(let i = 0, j = 0; i < tetromino.length; i++, j++){
+					let obj = {}
+					if(j == 0){
+						obj.x = tetromino[i].x;
+						obj.y = tetromino[i].y;
+					}else if(j == 1){
+						obj.x = tetromino[i].x;
+						obj.y = tetromino[i].y;
+					}else if( j == 2){
+						obj.x = tetromino[i].x-1;
+						obj.y = tetromino[i].y+2;
+					}else if( j == 3){
+						obj.x = tetromino[i].x-1;
+						obj.y = tetromino[i].y+2;
+					}
+					newCoordenats.push(obj)
+				}
+				return newCoordenats
+			}
+			return third_rotation_L(localTetromino)
+		}
+		
+		if(arrCoordinates_X[0] == arrCoordinates_X[1] && arrCoordinates_X[1] == arrCoordinates_X[2] && arrCoordinates_X[2] < arrCoordinates_X[3] && arrCoordinates_Y[0] < arrCoordinates_Y[1] && arrCoordinates_Y[1] < arrCoordinates_Y[2] && arrCoordinates_Y[2] == arrCoordinates_Y[3]){
+			function fourth_rotation_L(tetromino){
+				let newCoordenats = []
+				for(let i = 0, j = 0; i < tetromino.length; i++, j++){
+					let obj = {}
+					if(j == 0){
+						obj.x = tetromino[i].x;
+						obj.y = tetromino[i].y+1;
+					}else if(j == 1){
+						obj.x = tetromino[i].x+1;
+						obj.y = tetromino[i].y;
+					}else if( j == 2){
+						obj.x = tetromino[i].x+2;
+						obj.y = tetromino[i].y-2;
+					}else if( j == 3){
+						obj.x = tetromino[i].x+1;
+						obj.y = tetromino[i].y-1;
+					}
+					newCoordenats.push(obj)
+				}
+				return newCoordenats
+			}
+			return fourth_rotation_L(localTetromino)
 		}
 			
 	},
@@ -129,7 +229,7 @@ module.exports = {
 		return newArr;
 	},
 	
-	buildTetramino: function(stringOfCoordinates){
+	buildTetromino: function(stringOfCoordinates){
 		let math = stringOfCoordinates.split("\n")
 		let arrayOfCoordinates = []
 		let quantityElem = 0;
@@ -172,7 +272,7 @@ module.exports = {
 			}					
 		}
 		if(quantityElem != 4){
-			throw new Error("tetramino size is not correct");
+			throw new Error("tetromino size is not correct");
 		} 
 		return arrayOfCoordinates;
 		
