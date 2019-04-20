@@ -1,12 +1,6 @@
 var assert = require('chai').assert;
 var tetris = require('../tetris')
 
-//347
-//467
-//538
-//565
-
-//до 1090
 describe("field generation works correctly", function(){
 	it("field witch has elements",function(){
 		let stringField = `
@@ -259,7 +253,6 @@ describe("generation T tetromino", function(){
 			--X--
 			-XXX-
 			-----
-
 		`
 		let transformation = tetris.buildTetromino(stringField)
 		let bodyTetromino =  [ 
@@ -278,7 +271,6 @@ describe("generation T tetromino", function(){
 			--X--
 			-XXX-
 			-----
-
 		`
 		let transformation = tetris.buildTetromino(stringField)
 		let bodyTetromino =  [ 

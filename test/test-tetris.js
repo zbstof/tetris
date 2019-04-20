@@ -364,7 +364,7 @@ describe("L-tetromino rotation 4x4", function() {
 		let rotated180_L_Tetromino = tetris.rotateLine(emptyField, rotated90_L_Tetromino);
 		let rotated270_L_Tetromino = tetris.rotateLine(emptyField, rotated180_L_Tetromino);
 		let rotated360_L_Tetromino = tetris.rotateLine(emptyField, rotated270_L_Tetromino);
-		asert.deepEqual(tetromino, rotated360_L_Tetromino);
+		assert.deepEqual(tetromino, rotated360_L_Tetromino);
 	})
 	
 	it('The first rotation L-tetromino successful', function(){
@@ -381,7 +381,7 @@ describe("L-tetromino rotation 4x4", function() {
 			-X--
 			-X--
 		`);
-		asert.deepEqual(rotated90_L, expected90_L);
+		assert.deepEqual(rotated90_L, expected90_L);
 	})
 	
 	it('The second rotation L-tetromino successful', function(){
@@ -391,14 +391,14 @@ describe("L-tetromino rotation 4x4", function() {
 			-X--
 			-X--
 		`);
-		let rotated90_L = tetris.rotateLine(emptyField, tetromino);
-		let expected90_L = tetris.buildTetromino(`
+		let rotated180_L = tetris.rotateLine(emptyField, tetromino);
+		let expected180_L = tetris.buildTetromino(`
 			----
 			XXX-
 			X---
 			----
 		`);
-		asert.deepEqual(rotated180_L, expected180_L);
+		assert.deepEqual(rotated180_L, expected180_L);
 	})
 	
 	it('The third rotation L-tetromino successful', function(){
@@ -408,14 +408,14 @@ describe("L-tetromino rotation 4x4", function() {
 			X---
 			----
 		`);
-		let rotated90_L = tetris.rotateLine(emptyField, tetromino);
-		let expected90_L = tetris.buildTetromino(`
+		let rotated270_L = tetris.rotateLine(emptyField, tetromino);
+		let expected270_L = tetris.buildTetromino(`
 			----
 			X---
 			X---
 			XX--
 		`);
-		asert.deepEqual(rotated270_L, expected270_L);
+		assert.deepEqual(rotated270_L, expected270_L);
 	})
 	
 	it('L-tetromino too low to turn', function(){
@@ -426,7 +426,7 @@ describe("L-tetromino rotation 4x4", function() {
 			----
 		`);
 		let attemptRotation = tetris.rotateLine(emptyField, tetromino);
-		asert.deepEqual(tetromino, attemptRotation);
+		assert.deepEqual(tetromino, attemptRotation);
 	})
 	
 	it("L-tetromino can't turn 90 degrees", function(){
@@ -449,7 +449,7 @@ describe("L-tetromino rotation 4x4", function() {
 			XXX-
 			----
 		`);
-		asert.deepEqual(actual90_L, expected90_L);
+		assert.deepEqual(actual90_L, expected90_L);
 	})
 	
 	it("L-tetromino can't turn 180 degrees", function(){
@@ -473,7 +473,7 @@ describe("L-tetromino rotation 4x4", function() {
 			-X--
 			-X--
 		`);
-		asert.deepEqual(actual180_L, expected180_L);
+		assert.deepEqual(actual180_L, expected180_L);
 	})
 	
 	it("L-tetromino can't turn", function(){
@@ -534,7 +534,7 @@ describe("L-tetromino rotation 3x3", function() {
 		let rotated180_L_Tetromino = tetris.rotateLine(emptyField, rotated90_L_Tetromino);
 		let rotated270_L_Tetromino = tetris.rotateLine(emptyField, rotated180_L_Tetromino);
 		let rotated360_L_Tetromino = tetris.rotateLine(emptyField, rotated270_L_Tetromino);
-		asert.deepEqual(tetromino, rotated360_L_Tetromino);
+		assert.deepEqual(tetromino, rotated360_L_Tetromino);
 	})
 	
 	it('The first rotation L-tetromino successful', function(){
@@ -549,7 +549,7 @@ describe("L-tetromino rotation 3x3", function() {
 			-X-
 			-X-
 		`);
-		asert.deepEqual(rotated90_L, expected90_L);
+		assert.deepEqual(rotated90_L, expected90_L);
 	})
 	
 	it('The second rotation L-tetromino successful', function(){
@@ -558,13 +558,13 @@ describe("L-tetromino rotation 3x3", function() {
 			-X-
 			-X-
 		`);
-		let rotated90_L = tetris.rotateLine(emptyField, tetromino);
-		let expected90_L = tetris.buildTetromino(`
+		let rotated180_L = tetris.rotateLine(emptyField, tetromino);
+		let expected180_L = tetris.buildTetromino(`
 			XXX-
 			X---
 			----
 		`);
-		asert.deepEqual(rotated180_L, expected180_L);
+		assert.deepEqual(rotated180_L, expected180_L);
 	})
 	
 	it('The third rotation L-tetromino successful', function(){
@@ -573,13 +573,13 @@ describe("L-tetromino rotation 3x3", function() {
 			X---
 			----
 		`);
-		let rotated90_L = tetris.rotateLine(emptyField, tetromino);
-		let expected90_L = tetris.buildTetromino(`
+		let rotated270_L = tetris.rotateLine(emptyField, tetromino);
+		let expected270_L = tetris.buildTetromino(`
 			X---
 			X---
 			XX--
 		`);
-		asert.deepEqual(rotated270_L, expected270_L);
+		assert.deepEqual(rotated270_L, expected270_L);
 	})
 	
 	it('L-tetromino too low to turn', function(){
@@ -589,7 +589,7 @@ describe("L-tetromino rotation 3x3", function() {
 			---
 		`);
 		let attemptRotation = tetris.rotateLine(emptyField, tetromino);
-		asert.deepEqual(tetromino, attemptRotation);
+		assert.deepEqual(tetromino, attemptRotation);
 	})
 	
 	it("L-tetromino can't turn 90 degrees", function(){
@@ -609,7 +609,7 @@ describe("L-tetromino rotation 3x3", function() {
 			XXX
 			---
 		`);
-		asert.deepEqual(actual90_L, expected90_L);
+		assert.deepEqual(actual90_L, expected90_L);
 	})
 	
 	it("L-tetromino can't turn 180 degrees", function(){
@@ -630,7 +630,7 @@ describe("L-tetromino rotation 3x3", function() {
 			-X-
 			-X-
 		`);
-		asert.deepEqual(actual180_L, expected180_L);
+		assert.deepEqual(actual180_L, expected180_L);
 	})
 	
 	it("L-tetromino can't turn", function(){
