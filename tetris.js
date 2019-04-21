@@ -79,6 +79,106 @@ module.exports = {
 				}
 			}
 		}
+		
+		if(arrCoordinates_X[0] < arrCoordinates_X[1] && arrCoordinates_X[1] < arrCoordinates_X[2] && arrCoordinates_X[2] == arrCoordinates_X[3] && arrCoordinates_Y[0] == arrCoordinates_Y[1]&& arrCoordinates_Y[1] > arrCoordinates_Y[2] && arrCoordinates_Y[2] < arrCoordinates_Y[3]){
+			function first_rotation_L(tetromino){
+				let newCoordenats = []
+				for(let i = 0, j = 0; i < tetromino.length; i++, j++){
+					let obj = {}
+					if(j == 0){
+						obj.x = tetromino[i].x;
+						obj.y = tetromino[i].y-1;
+					}else if(j == 1){
+						obj.x = tetromino[i].x;
+						obj.y = tetromino[i].y-1;
+					}else if( j == 2){
+						obj.x = tetromino[i].x-1;
+						obj.y = tetromino[i].y+1;
+					}else if( j == 3){
+						obj.x = tetromino[i].x-1;
+						obj.y = tetromino[i].y+1;
+					}
+					newCoordenats.push(obj)
+				}
+				return newCoordenats
+			}
+			return first_rotation_L(localTetromino)
+		}
+		
+		if(arrCoordinates_X[0] < arrCoordinates_X[1] && arrCoordinates_X[1] == arrCoordinates_X[2] && arrCoordinates_X[2] == arrCoordinates_X[3] && arrCoordinates_Y[0] == arrCoordinates_Y[1] && arrCoordinates_Y[1] < arrCoordinates_Y[2] && arrCoordinates_Y[2] < arrCoordinates_Y[3]){
+			function second_rotation_L(tetromino){
+				let newCoordenats = []
+				for(let i = 0, j = 0; i < tetromino.length; i++, j++){
+					let obj = {}
+					if(j == 0){
+						obj.x = tetromino[i].x;
+						obj.y = tetromino[i].y;
+					}else if(j == 1){
+						obj.x = tetromino[i].x-1;
+						obj.y = tetromino[i].y+1;
+					}else if( j == 2){
+						obj.x = tetromino[i].x;
+						obj.y = tetromino[i].y-1;
+					}else if( j == 3){
+						obj.x = tetromino[i].x+1;
+						obj.y = tetromino[i].y-2;
+					}
+					newCoordenats.push(obj)
+				}
+				return newCoordenats
+			}
+			return second_rotation_L(localTetromino)
+		}
+		
+		if(arrCoordinates_X[0] == arrCoordinates_X[1] && arrCoordinates_X[1] < arrCoordinates_X[2] && arrCoordinates_X[2] < arrCoordinates_X[3] && arrCoordinates_Y[0] < arrCoordinates_Y[1] && arrCoordinates_Y[1] > arrCoordinates_Y[2] && arrCoordinates_Y[2] == arrCoordinates_Y[3]){
+			function third_rotation_L(tetromino){
+				let newCoordenats = []
+				for(let i = 0, j = 0; i < tetromino.length; i++, j++){
+					let obj = {}
+					if(j == 0){
+						obj.x = tetromino[i].x;
+						obj.y = tetromino[i].y;
+					}else if(j == 1){
+						obj.x = tetromino[i].x;
+						obj.y = tetromino[i].y;
+					}else if( j == 2){
+						obj.x = tetromino[i].x-1;
+						obj.y = tetromino[i].y+2;
+					}else if( j == 3){
+						obj.x = tetromino[i].x-1;
+						obj.y = tetromino[i].y+2;
+					}
+					newCoordenats.push(obj)
+				}
+				return newCoordenats
+			}
+			return third_rotation_L(localTetromino)
+		}
+		
+		if(arrCoordinates_X[0] == arrCoordinates_X[1] && arrCoordinates_X[1] == arrCoordinates_X[2] && arrCoordinates_X[2] < arrCoordinates_X[3] && arrCoordinates_Y[0] < arrCoordinates_Y[1] && arrCoordinates_Y[1] < arrCoordinates_Y[2] && arrCoordinates_Y[2] == arrCoordinates_Y[3]){
+			function fourth_rotation_L(tetromino){
+				let newCoordenats = []
+				for(let i = 0, j = 0; i < tetromino.length; i++, j++){
+					let obj = {}
+					if(j == 0){
+						obj.x = tetromino[i].x;
+						obj.y = tetromino[i].y+1;
+					}else if(j == 1){
+						obj.x = tetromino[i].x+1;
+						obj.y = tetromino[i].y;
+					}else if( j == 2){
+						obj.x = tetromino[i].x+2;
+						obj.y = tetromino[i].y-2;
+					}else if( j == 3){
+						obj.x = tetromino[i].x+1;
+						obj.y = tetromino[i].y-1;
+					}
+					newCoordenats.push(obj)
+				}
+				return newCoordenats
+			}
+			return fourth_rotation_L(localTetromino)
+		}
 			
 	},
 	/*
