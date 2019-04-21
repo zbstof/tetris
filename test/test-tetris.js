@@ -421,9 +421,8 @@ describe("L-tetromino rotation 4x4", function() {
 	it('L-tetromino too low to turn', function(){
 		let tetromino = tetris.buildTetromino(`
 			----
-			--X-
 			XXX-
-			----
+			X---
 		`);
 		let attemptRotation = tetris.rotateLine(emptyField, tetromino);
 		assert.deepEqual(tetromino, attemptRotation);
