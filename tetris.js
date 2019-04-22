@@ -100,7 +100,11 @@ module.exports = {
 					}
 					newCoordenats.push(obj)
 				}
-				return newCoordenats
+				if(checkThatTheFieldIsFree(newCoordenats)){
+					return localTetromino
+				}else{
+					return newCoordenats
+				}
 			}
 			return first_rotation_L(localTetromino)
 		}
@@ -125,7 +129,11 @@ module.exports = {
 					}
 					newCoordenats.push(obj)
 				}
-				return newCoordenats
+				if(checkThatTheFieldIsFree(newCoordenats)){
+					return localTetromino
+				}else{
+					return newCoordenats
+				}
 			}
 			return second_rotation_L(localTetromino)
 		}
@@ -150,7 +158,11 @@ module.exports = {
 					}
 					newCoordenats.push(obj)
 				}
-				return newCoordenats
+				if(checkThatTheFieldIsFree(newCoordenats)){
+					return localTetromino
+				}else{
+					return newCoordenats
+				}
 			}
 			return third_rotation_L(localTetromino)
 		}
@@ -175,7 +187,11 @@ module.exports = {
 					}
 					newCoordenats.push(obj)
 				}
-				return newCoordenats
+				if(checkThatTheFieldIsFree(newCoordenats)){
+					return localTetromino
+				}else{
+					return newCoordenats
+				}
 			}
 			return fourth_rotation_L(localTetromino)
 		}
