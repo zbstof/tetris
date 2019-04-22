@@ -74,7 +74,9 @@ module.exports = {
 			}
 			
 			for(let i = 0; i < arrCoordinates_X.length; i++){
-				if(field[coordinates_Y[i]][coordinates_X[i]] == true){
+				if(field[coordinates_X[i]] == undefined || field[coordinates_Y[i]] == undefined){
+					return true
+				}else if(field[coordinates_Y[i]][coordinates_X[i]] == true){
 					return true
 				}
 			}
