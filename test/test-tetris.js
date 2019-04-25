@@ -421,6 +421,7 @@ describe("L-tetromino rotation 4x4", function() {
 	it('L-tetromino too low to turn', function(){
 		let tetromino = tetris.buildTetromino(`
 			----
+			----
 			XXX-
 			X---
 		`);
@@ -583,9 +584,9 @@ describe("L-tetromino rotation 3x3", function() {
 	
 	it('L-tetromino too low to turn', function(){
 		let tetromino = tetris.buildTetromino(`
-			--X
-			XXX
 			---
+			XXX
+			X--
 		`);
 		let attemptRotation = tetris.rotateLine(emptyField, tetromino);
 		assert.deepEqual(tetromino, attemptRotation);
@@ -667,3 +668,23 @@ describe("L-tetromino rotation 3x3", function() {
 	})
 	
 })
+
+describe("Rotate element on axis O", function() {
+	if("Rotation 360 degrees", function(){
+		let turningPoint = {x:1, y:1}
+		let elemen = {x:1, y:2}
+		
+		let firstRotation = tetris.rotateElement(turningPoint,elemen)
+		let secondRotation = tetris.rotateElement(turningPoint,firstRotation)
+		let thirdRotation = tetris.rotateElement(turningPoint,secondRotation)
+		let fourthRotation = tetris.rotateElement(turningPoint,fourthRotation)
+		let fifthRotation = tetris.rotateElement(turningPoint,fifthRotation)
+		let sixthRotation = tetris.rotateElement(turningPoint, sixthRotation)
+		let seventhRotation = tetris.rotateElement(turningPoint, seventhRotation)
+		let eighthRotation = tetris.rotateElement(turningPoint, eighthRotation)
+		let ninthRotation = tetris.rotateElement(turningPoint, ninthRotation)
+		assert.deepEqual(elemen, ninthRotation)
+	})
+	
+	
+}

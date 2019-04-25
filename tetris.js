@@ -74,7 +74,9 @@ module.exports = {
 			}
 			
 			for(let i = 0; i < arrCoordinates_X.length; i++){
-				if(field[coordinates_Y[i]][coordinates_X[i]] == true){
+				if(field[coordinates_X[i]] == undefined || field[coordinates_Y[i]] == undefined){
+					return true
+				}else if(field[coordinates_Y[i]][coordinates_X[i]] == true){
 					return true
 				}
 			}
@@ -100,7 +102,11 @@ module.exports = {
 					}
 					newCoordenats.push(obj)
 				}
-				return newCoordenats
+				if(checkThatTheFieldIsFree(newCoordenats)){
+					return localTetromino
+				}else{
+					return newCoordenats
+				}
 			}
 			return first_rotation_L(localTetromino)
 		}
@@ -125,7 +131,11 @@ module.exports = {
 					}
 					newCoordenats.push(obj)
 				}
-				return newCoordenats
+				if(checkThatTheFieldIsFree(newCoordenats)){
+					return localTetromino
+				}else{
+					return newCoordenats
+				}
 			}
 			return second_rotation_L(localTetromino)
 		}
@@ -150,7 +160,11 @@ module.exports = {
 					}
 					newCoordenats.push(obj)
 				}
-				return newCoordenats
+				if(checkThatTheFieldIsFree(newCoordenats)){
+					return localTetromino
+				}else{
+					return newCoordenats
+				}
 			}
 			return third_rotation_L(localTetromino)
 		}
@@ -175,7 +189,11 @@ module.exports = {
 					}
 					newCoordenats.push(obj)
 				}
-				return newCoordenats
+				if(checkThatTheFieldIsFree(newCoordenats)){
+					return localTetromino
+				}else{
+					return newCoordenats
+				}
 			}
 			return fourth_rotation_L(localTetromino)
 		}
